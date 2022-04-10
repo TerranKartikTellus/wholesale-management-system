@@ -24,7 +24,18 @@ export default function Panel() {
                               <div className="p-20 bg-gray-100 mt-10 mx-10 bg-opacity-30">
                                       <div className="text-2xl tracking-wider">Add New Supplier</div>
                               </div>
+                              <div><Form></Form></div>
                     </div>
           </div>
 );
+}
+
+function Form(){
+        return(
+                <>
+                        <form>
+                                
+                        </form>
+                </>
+        );
 }

@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema({
                     type: Number, 
                     required: [true, 'Please add a ProductId'],
                     unique: true,
-                    maxlength: [10, 'Product id should be of 10 digit']
+                    maxlength: [5, 'Product id should be of 10 digit']
           },
           pname:{ 
                  type: String,

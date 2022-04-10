@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const retailerSchema = new mongoose.Schema({
-          rid:{ },
+          rid:{  },
           rname:{ },
           address:{ },
           contact:{ }

@@ -25,6 +25,16 @@ export default function Panel() {
                                       <div className="text-2xl tracking-wider">Add New Categories</div>
                               </div>
                     </div>
+                    <div><Form></Form></div>
           </div>
 );
+}
+function Form(){
+        return(
+                <>
+                        <form>
+                                
+                        </form>
+                </>
+        );
 }
