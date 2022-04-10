@@ -23,7 +23,7 @@ const notify = [
                                         WholeSale Management <br></br> System
                               </div>
                               <div className="p-20 bg-gray-100 mt-10 mx-10 bg-opacity-30">
-                                      <div className="text-2xl tracking-wider">Categories</div>
+                                      <div className="text-2xl tracking-wider">Add New User Position</div>
                               </div>
                     </div>
           </div>
