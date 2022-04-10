@@ -2,18 +2,15 @@ import SidePanel from "/components/sidepanel";
 import Head from 'next/head'
 
 
+
 export default function Panel() {
-const msgNewProduct = [ null , null ];
-const msgNewCategory =[ null , null ];
-const msgNewSupplier =[ null , null ];
-const msgNewRetailer =[ null , null ];
 
           return (
           <div className="flex flex-row h-screen items-start overflow-y-hidden">
-                     <Head>
-        <title>View User Position </title>
+                 <Head>
+        <title>View Sales </title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
+      </Head>    
                     <div className="h-full bg-gray-200  w-3/12"><SidePanel></SidePanel></div>
                     <div className="h-full bg-gradient-to-br from-purple-600/20 via-cyan-600/20 to-fuchsia-500/30 w-9/12">
                               <div className="flex flex-row items-center justify-between">
@@ -24,12 +21,10 @@ const msgNewRetailer =[ null , null ];
                                         WholeSale Management <br></br> System
                               </div>
                               </div>
-                              <div>
-                                        Manage user position
+                              <div className="p-20 bg-gray-100 mt-10 mx-10 bg-opacity-30">
+                                      <div className="text-2xl tracking-wider">Sales</div>
                               </div>
-
                     </div>
-                    
           </div>
 );
 }

@@ -1,7 +1,13 @@
+import Head from 'next/head'
+
 
 export default function Home() {
   return (
    <div className="bg-gray-900 flex flex-row justify-between items-center m-0 p-0 h-screen text-gray-50">
+     <Head>
+        <title>Admin Login </title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
      <div className="bg-gray00 h-full w-3/6 ">
        
        <img src="11.jpg" className="object-none  w-full h-full opacity-30 "></img>
