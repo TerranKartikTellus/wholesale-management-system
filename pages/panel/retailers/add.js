@@ -39,22 +39,22 @@ function Form(){
                         <form>
                         <div class="form-group">
                         <label for="rid">Retailer ID</label>
-                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter ID"></input>
+                        <input type="number" class="form-control" aria-describedby="emailHelp" placeholder="Enter ID"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
                         <label for="rname">Retailer Name</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Name"></input>
+                        <input type="text" class="form-control" placeholder="Enter Name"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
                         <label for="text">Retailer Address</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Address"></input>
+                        <input type="password" class="form-control" placeholder="Enter Address"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
                         <label for="rcontact">Contact Number</label>
-                        <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter Contact"></input>
+                        <input type="number" class="form-control" placeholder="Enter Contact"></input>
                         </div>
                         <button type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>Submit</button>
                         </form>
