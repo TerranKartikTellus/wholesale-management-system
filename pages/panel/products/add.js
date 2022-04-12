@@ -1,6 +1,6 @@
 import SidePanel from "/components/sidepanel";
 import Head from 'next/head'
-
+import { useState } from "react";
 
 
 export default function Panel() {
@@ -33,44 +33,76 @@ export default function Panel() {
 );
 }
 function Form(){
+        
+        const [pid             , setPID]           = useState(""); 
+        
+        const [productName     , setPNAME]         = useState(""); 
+        const [productMRP      , setMRP]           = useState(""); 
+        const [productOPRICE   , setOriginalPrice] = useState(""); 
+        const [productRating   , setRATING]        = useState(""); 
+        const [productQuantity , setQUANTITY]      = useState(""); 
+        const [productCategory , setCATEGORY]      = useState(""); 
+        
+        
+        async function submitForm(e){
+                e.preventDefault();
+                console.log(pid,productName,productMRP,productOPRICE,productRating,productQuantity,productCategory);
+
+        }
         return(
                 <>
-                        <form>
-                        <div class="form-group">
+                        <form >
+                        <div className="form-group">
                         <label for="pid">Product ID</label>
-                        <input type="number" class="form-control" id="123" placeholder="Enter ID"></input>
+                        <input
+                         name="productID" onChange={
+                                 ()=>{
+                                         setPID(event.target.value);
+                                         console.log(pid);}
+                                }
+                        type="number" className="form-control" id="123" placeholder="Enter ID"></input>
                         </div>
                         <br></br>
-                        <div class="form-group">
+                        <div className="form-group">
                         <label for="pname">Product Name</label>
-                        <input type="charecterdata" class="form-control" id="name"  placeholder="Enter Name"></input>
+                        <input 
+                         name="productName" onChange={()=>{setPNAME(event.target.value);}}
+                        type="charecterdata" className="form-control" id="name"  placeholder="Enter Name"></input>
                         </div>
                         <br></br>
-                        <div class="form-group">
+                        <div className="form-group">
                         <label for="mrp">Maximum Retail Price</label>
-                        <input type="number" class="form-control" id="123" placeholder="Enter MRP"></input>
+                        <input onChange={()=>{setMRP(event.target.value);}}
+                          name="productMRP"
+                         type="number" className="form-control" id="123" placeholder="Enter MRP"></input>
                         </div>
                         <br></br>
-                        <div class="form-group">
+                        <div className="form-group">
                         <label for="originalPrice">Original Price</label>
-                        <input type="number" class="form-control" id="123" placeholder="Enter Original price"></input>
+                        <input onChange={()=>{setOriginalPrice(event.target.value);}}
+                         name="productOriginalPrice"
+                         type="number" className="form-control" id="123" placeholder="Enter Original price"></input>
                         </div>
                         <br></br>
-                        <div class="form-group">
+                        <div className="form-group">
                         <label for="rating">Please suggest a quality rating for the product </label>
-                        <input type="number" class="form-control" id="5" placeholder="Enter Rating"></input>
+                        <input onChange={()=>{setRATING(event.target.value);}} 
+                        name="productRating" type="number" className="form-control" id="5" placeholder="Enter Rating"></input>
                         </div>
                         <br></br>
-                        <div class="form-group">
+                        <div className="form-group">
                         <label for="quantity">Quantity</label>
-                        <input type="number" class="form-control" id="124" placeholder="Please input the quantity "></input>
+                        <input onChange={()=>{ setQUANTITY(event.target.value);}}
+                        name="productQuantity" type="number" className="form-control" id="124" placeholder="Please input the quantity "></input>
                         </div>
                         <br></br>
-                        <div class="form-group">
+                        <div className="form-group">
                         <label for="productcategoryId">Product category Id</label>
-                        <input type="number" class="form-control" id="123" placeholder="Enter Id"></input>
+                        <input onChange={()=>{setCATEGORY(event.target.value);}}
+                         name="productCaretoryId"
+                         type="number" className="form-control" id="123" placeholder="Enter Id"></input>
                         </div>
-                        <button type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>
+                        <button onClick={submitForm} type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>
                                 Submit
                         </button>
                         </form>
