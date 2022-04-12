@@ -35,12 +35,12 @@ function Form(){
                 <>
                         <form>
                         <div class="form-group">
-                        <label for="123">Product category ID</label>
+                        <label for="pCategoryid">Product category ID</label>
                         <input type="number" class="form-control" id="123" placeholder="Enter ID"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
-                        <label for="charecterdata">Product Category</label>
+                        <label for="pCategory">Product Category</label>
                         <input type="charecterdata" class="form-control" id="abc" placeholder="Enter The category"></input>
                         </div>
                         <button type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>

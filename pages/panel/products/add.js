@@ -37,37 +37,37 @@ function Form(){
                 <>
                         <form>
                         <div class="form-group">
-                        <label for="123">Product ID</label>
+                        <label for="pid">Product ID</label>
                         <input type="number" class="form-control" id="123" placeholder="Enter ID"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
-                        <label for="name">Product Name</label>
+                        <label for="pname">Product Name</label>
                         <input type="charecterdata" class="form-control" id="name"  placeholder="Enter Name"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
-                        <label for="123">Maximum Retail Price</label>
+                        <label for="mrp">Maximum Retail Price</label>
                         <input type="number" class="form-control" id="123" placeholder="Enter MRP"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
-                        <label for="123">Original Price</label>
+                        <label for="originalPrice">Original Price</label>
                         <input type="number" class="form-control" id="123" placeholder="Enter Original price"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
-                        <label for="5">Please suggest a quality rating for the product </label>
+                        <label for="rating">Please suggest a quality rating for the product </label>
                         <input type="number" class="form-control" id="5" placeholder="Enter Rating"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
-                        <label for="123">Quantity</label>
+                        <label for="quantity">Quantity</label>
                         <input type="number" class="form-control" id="124" placeholder="Please input the quantity "></input>
                         </div>
                         <br></br>
                         <div class="form-group">
-                        <label for="123">Product category Id</label>
+                        <label for="productcategoryId">Product category Id</label>
                         <input type="number" class="form-control" id="123" placeholder="Enter Id"></input>
                         </div>
                         <button type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>
