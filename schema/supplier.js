@@ -5,7 +5,7 @@ const supplierSchema = new mongoose.Schema({
             type: Number, 
             required: [true, 'Please add a verified supplier Id'],
             unique: true,
-            maxlength: [10, ' Supplier id should be of 10 digit']
+            maxlength: [3, ' Supplier id should be of 3 digit']
           },
           sname:{ 
             type: CharacterData, 
