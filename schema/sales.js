@@ -13,7 +13,7 @@ const salesSchema = new mongoose.Schema({
                  type: Number, 
                  required: [true, 'Please add a Order Id'],
                  unique: true,
-                 maxlength: [10, 'Order id should be of 10 digit']
+                 maxlength: [3, 'Order id should be of 3 digit']
            },
           retailerId:{ 
                  type: Number, 

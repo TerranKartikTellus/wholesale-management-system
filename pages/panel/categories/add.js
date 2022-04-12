@@ -33,7 +33,18 @@ function Form(){
         return(
                 <>
                         <form>
-                                
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Product category ID</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter ID"></input>
+                        </div>
+                        <br></br>
+                        <div class="form-group">
+                        <label for="exampleInputPassword1">Product Category</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter The category"></input>
+                        </div>
+                        <button type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>
+                                Submit
+                        </button> 
                         </form>
                 </>
         );
