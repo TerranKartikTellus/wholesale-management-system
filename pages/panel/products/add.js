@@ -34,8 +34,7 @@ export default function Panel() {
 }
 function Form(){
         
-        const [pid             , setPID]           = useState(""); 
-        
+        const [pid             , setPID]           = useState("");         
         const [productName     , setPNAME]         = useState(""); 
         const [productMRP      , setMRP]           = useState(""); 
         const [productOPRICE   , setOriginalPrice] = useState(""); 

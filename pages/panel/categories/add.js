@@ -1,5 +1,6 @@
 import SidePanel from "/components/sidepanel";
 import Head from 'next/head'
+import { useState } from "react";
 
 
 
@@ -31,21 +32,36 @@ export default function Panel() {
 );
 }
 function Form(){
+        
+        const [productCaretoryId   , setPCATEGORYID]       = useState("");         
+        const [productCategory     , setPCATEGORY]         = useState(""); 
+ 
+        
+        
+        async function submitForm(e){
+                e.preventDefault();
+                console.log(productCaretoryId,productCategory);
+
+        }
         return(
                 <>
-                        <form>
-                        <div class="form-group">
-                        <label for="pCategoryid">Product category ID</label>
-                        <input type="number" class="form-control" id="123" placeholder="Enter ID"></input>
+                        <form >
+                        <div className="form-group">
+                        <label for="PCATEGORYID">Product Category Id</label>
+                        <input 
+                         name="productCategoryId" onChange={()=>{setPCATEGORYID(event.target.value);}}
+                        type="number" className="form-control" id="123"  placeholder="Enter Id"></input>
                         </div>
                         <br></br>
-                        <div class="form-group">
-                        <label for="pCategory">Product Category</label>
-                        <input type="charecterdata" class="form-control" id="abc" placeholder="Enter The category"></input>
+                        <div className="form-group">
+                        <label for="PCATEGORY">Product category</label>
+                        <input onChange={()=>{setPCATEGORY(event.target.value);}}
+                         name="productCategory"
+                         type="charecterdata" className="form-control" id="category" placeholder="Enter category"></input>
                         </div>
-                        <button type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>
+                        <button onClick={submitForm} type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>
                                 Submit
-                        </button> 
+                        </button>
                         </form>
                 </>
         );

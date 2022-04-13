@@ -1,5 +1,6 @@
 import SidePanel from "/components/sidepanel";
 import Head from 'next/head'
+import { useState } from "react";
 
 
 
@@ -33,30 +34,52 @@ export default function Panel() {
 );
 }
 function Form(){
+        
+        const [retailerId              , setRID]         = useState("");         
+        const [retailerName            , setRNAME]       = useState(""); 
+        const [retailerAddress         , setRADDRESS]    = useState(""); 
+        const [retailerContactnumber   , setRCONTACT]    = useState(""); 
+
+        
+        
+        async function submitForm(e){
+                e.preventDefault();
+                console.log(retailerId,retailerName,retailerAddress,retailerContactnumber);
+
+        }
         return(
                 <>
-                
-                        <form>
-                        <div class="form-group">
-                        <label for="rid">Retailer ID</label>
-                        <input type="number" class="form-control" aria-describedby="emailHelp" placeholder="Enter ID"></input>
+                        <form >
+                        <div className="form-group">
+                        <label for="rid">Retailer Id</label>
+                        <input 
+                         name="retailerId" onChange={()=>{setRID(event.target.value);}}
+                        type="number" className="form-control" id="123"  placeholder="Enter Id"></input>
                         </div>
                         <br></br>
-                        <div class="form-group">
-                        <label for="rname">Retailer Name</label>
-                        <input type="text" class="form-control" placeholder="Enter Name"></input>
+                        <div className="form-group">
+                        <label for="rname">Product Name</label>
+                        <input 
+                         name="retailerName" onChange={()=>{setRNAME(event.target.value);}}
+                        type="charecterdata" className="form-control" id="name"  placeholder="Enter Name"></input>
                         </div>
                         <br></br>
-                        <div class="form-group">
-                        <label for="text">Retailer Address</label>
-                        <input type="password" class="form-control" placeholder="Enter Address"></input>
+                        <div className="form-group">
+                        <label for="raddress">Retailer address</label>
+                        <input onChange={()=>{setRADDRESS(event.target.value);}}
+                          name="retaileraddress"
+                         type="charecterdata" className="form-control" id="address" placeholder="Enter Address"></input>
                         </div>
                         <br></br>
-                        <div class="form-group">
-                        <label for="rcontact">Contact Number</label>
-                        <input type="number" class="form-control" placeholder="Enter Contact"></input>
+                        <div className="form-group">
+                        <label for="rcontact">Retailer Contact</label>
+                        <input onChange={()=>{setRCONTACT(event.target.value);}}
+                         name="retailerContactnumber"
+                         type="number" className="form-control" id="123" placeholder="Enter Contact number"></input>
                         </div>
-                        <button type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>Submit</button>
+                        <button onClick={submitForm} type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>
+                                Submit
+                        </button>
                         </form>
                 </>
         );

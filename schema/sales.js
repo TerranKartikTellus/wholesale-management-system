@@ -1,3 +1,4 @@
+const { Timestamp } = require("mongodb");
 const mongoose = require("mongoose");
 
 const salesSchema = new mongoose.Schema({
@@ -22,8 +23,10 @@ const salesSchema = new mongoose.Schema({
                  maxlength: [3, 'Retailer id should be of 3 digit']
           },
           timestamp:{
-                 type: timestamp, 
-                 required: ['Please add a timestamp'],
+                 type: Number, 
+                 required: [true, 'Please the timstamp of transaction'],
+                 unique: true,
+                 maxlength: [6, 'Timestamp should be of 6 digit']
           },
           netCost:{  
                  type: Number, 
