@@ -1,6 +1,6 @@
 import SidePanel from "/components/sidepanel";
 import Head from 'next/head'
-
+import React ,{useState} from "react"
 
 export default function Panel() {
 
@@ -32,27 +32,38 @@ export default function Panel() {
 }
 
 function Form(){
+
+        const [sid, setSID] = useState("6");
+        const [sname, setSNAME] = useState("");
+        const [saddress, setSADDRESS] = useState("");
+        const [scontact, setSCONTACT] = useState("");
+
         return(
                 <>
                         <form>
                         <div class="form-group">
                         <label for="sid">Supplier ID</label>
-                        <input type="number" class="form-control" aria-describedby="emailHelp" placeholder="Enter ID"></input>
+                        <input name = "supplierID" 
+                        onChange = {() => {
+                                setSID(event.target.value); 
+                                console.log(event.target.value)}
+                                } 
+                                type="number" class="form-control" aria-describedby="emailHelp" placeholder="Enter ID"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
                         <label for="sname">Supplier Name</label>
-                        <input type="text" class="form-control" placeholder="Enter Name"></input>
+                        <input name = "supplierName" onChange = {() => {setSNAME(event.target.value);}} type="text" class="form-control" placeholder="Enter Name"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
                         <label for="saddress">Supplier Address</label>
-                        <input type="text" class="form-control"  placeholder="Enter Address"></input>
+                        <input name = "supplierAddress" onChange = {() => {setSADDRESS(event.target.value);}} type="text" class="form-control"  placeholder="Enter Address"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
                         <label for="scontact">Contact Number</label>
-                        <input type="number" class="form-control" placeholder="Enter Contact"></input>
+                        <input name = "supplierContact" onChange = {() => {setSCONTACT(event.target.value);}} type="number" class="form-control" placeholder="Enter Contact"></input>
                         </div>
                         <button type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>Submit</button>
                         </form>
