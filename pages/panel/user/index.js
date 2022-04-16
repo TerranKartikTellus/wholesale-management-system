@@ -2,13 +2,17 @@ import SidePanel from "/components/sidepanel";
 import Head from 'next/head'
 import clientPromise from "/lib/mongodb";
 
+import React ,{useState} from "react"
+import { useRouter } from 'next/router';
+
 
 export default function Panel({AllUsers}) {
 // const msgNewProduct = [ null , null ];
 // const msgNewCategory =[ null , null ];
 // const msgNewSupplier =[ null , null ];
 // const msgNewRetailer =[ null , null ];
-
+const router = useRouter()
+  console.log(router.query.newUser);
 console.log(AllUsers);
 return (
           <div className="flex flex-row h-screen items-start overflow-y-hidden">
@@ -28,20 +32,36 @@ return (
                               </div>
                               <div className="mt-8 m-3 p-8">
                                 <div className="text-5xl font-mono font-bold">All users</div>
-                                <div><Table users={AllUsers}></Table></div>
+                                <div><Table msg={router.query.newUser} users={AllUsers}></Table></div>
                               </div>
                     </div>
                     
           </div>
 );
 }
-function Table({users}){
+function Table({msg,users}){
+  const [newUser , setNewUser] = useState(msg);
+
   return(
     <div className="">
       {
         users 
         ? 
         <div className="grid  grid-cols-4">
+          {
+                                        newUser && 
+                                        <div className="flex flex-row justify-between items-start w-96 p-2 tracking-wider m-1 rounded-lg absolute right-0 top-0 bg-green-600 text-gray-200">
+                                                {
+
+                                                        <div >
+                                                                <div className="text-xl">{newUser}</div>
+                                                                
+                                                                
+                                                        </div>
+                                                }
+                                                <div><button onClick={()=>{setNewUser("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
+                                        </div>
+                                }
           {users.map(i=>(
             <div id={i._id} className="hover:scale-105 transition-all duration-300 ease-in-out flex flex-col justify-start items-start m-3 text-lg font-mono font-medium rounded-sm">
               <div className="bg-cyan-800 w-56 p-1 rounded-t-sm text-gray-50">UID: {i.uid}</div>
