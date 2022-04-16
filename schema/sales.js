@@ -5,7 +5,7 @@ const salesSchema = new mongoose.Schema({
           cartArray:{ 
            },
           paymentVia:{ 
-                 type: CharacterData, 
+                 type: String, 
                  required: [true, 'Please mention the payment method used'],
                  unique: true,
                  maxlength: [15, 'Please make sure its less than 15 charecters']

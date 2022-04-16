@@ -61,14 +61,14 @@ function Form(){
                         <label for="rname">Product Name</label>
                         <input 
                          name="retailerName" onChange={()=>{setRNAME(event.target.value);}}
-                        type="charecterdata" className="form-control" id="name"  placeholder="Enter Name"></input>
+                        type="string" className="form-control" id="name"  placeholder="Enter Name"></input>
                         </div>
                         <br></br>
                         <div className="form-group">
                         <label for="raddress">Retailer address</label>
                         <input onChange={()=>{setRADDRESS(event.target.value);}}
                           name="retaileraddress"
-                         type="charecterdata" className="form-control" id="address" placeholder="Enter Address"></input>
+                         type="string" className="form-control" id="address" placeholder="Enter Address"></input>
                         </div>
                         <br></br>
                         <div className="form-group">

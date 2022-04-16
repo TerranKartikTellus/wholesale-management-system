@@ -57,7 +57,7 @@ function Form(){
                         <label for="PCATEGORY">Product category</label>
                         <input onChange={()=>{setPCATEGORY(event.target.value);}}
                          name="productCategory"
-                         type="charecterdata" className="form-control" id="category" placeholder="Enter category"></input>
+                         type="string" className="form-control" id="string" placeholder="Enter category"></input>
                         </div>
                         <button onClick={submitForm} type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>
                                 Submit

@@ -8,7 +8,7 @@ const productCategorySchema = new mongoose.Schema({
             maxlength: [3, 'Id should be of 3 digit']
            },	
           pCategory:{
-            type: CharacterData, 
+            type: String, 
             required: [true, 'Please mention category of the product'],
             unique: true,
             maxlength: [15, 'Please make sure its less than 15 charecters']

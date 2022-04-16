@@ -66,7 +66,7 @@ function Form(){
                         <label for="pname">Product Name</label>
                         <input 
                          name="productName" onChange={()=>{setPNAME(event.target.value);}}
-                        type="charecterdata" className="form-control" id="name"  placeholder="Enter Name"></input>
+                        type="string" className="form-control" id="name"  placeholder="Enter Name"></input>
                         </div>
                         <br></br>
                         <div className="form-group">

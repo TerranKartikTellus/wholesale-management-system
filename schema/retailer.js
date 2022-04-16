@@ -8,16 +8,16 @@ const retailerSchema = new mongoose.Schema({
             maxlength: [3, 'Retailer id should be of 3 digit']
            },
           rname:{
-            type: CharacterData, 
+            type: String, 
             required: [true, 'Please mention the retailer name'],
             unique: true,
-            maxlength: [15, 'Please make sure its less than 15 charecters'
+            maxlength: [15, 'Please make sure its less than 15 charecters']
            },
           address:{
-            type: CharacterData, 
+            type: String, 
             required: [true, 'Please mention the retailer address'],
             unique: true,
-            maxlength: [15, 'Please make sure its less than 15 charecters'
+            maxlength: [15, 'Please make sure its less than 15 charecters']
            },
           contact:{
             type: Number, 
