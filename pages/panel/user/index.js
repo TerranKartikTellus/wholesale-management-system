@@ -51,8 +51,8 @@ function Table({users}){
               <div className="bg-cyan-400 w-56 p-1 ">Position ID: {i.position}</div>
               <div className="bg-cyan-300 w-56 p-1 ">Admin Privilige: {i.adminPrivilige}</div>
               <div className="flex flex-row text-center  bg-cyan-300 w-56  rounded-b-sm">
-                <button  className="hover:text-lg transition-all duration-200 ease-in-out hover:text-gray-200 w-1/2 bg-gray-800 text-xl text-gray-100">Edit</button>
-                <button  className="hover:text-lg transition-all duration-200 ease-in-out hover:text-gray-200 w-1/2 bg-red-700 text-xl text-gray-100">Delete</button>
+                <a href={`/api/operations/user/delete/{i.uid}`}  className="hover:text-lg transition-all duration-200 ease-in-out hover:text-gray-200 w-1/2 bg-gray-800 text-xl text-gray-100">Edit</a>
+                <a href={"/api/operations/user/edit/{i.uid}"}  className="hover:text-lg transition-all duration-200 ease-in-out hover:text-gray-200 w-1/2 bg-red-700 text-xl text-gray-100">Delete</a>
               </div>
             </div>
           ))}
