@@ -39,7 +39,7 @@ function Form (){
         const [position , setPosition] = useState("");
         const [adminP , setAdminP] = useState("Y");
         const [sex , setSex] = useState("M");
-        
+        const [error , setError] = useState();
         async function submitForm(e){
            e.preventDefault();
         console.log("sdad");
@@ -65,10 +65,30 @@ function Form (){
                 );
                 const jsonResponse = await response.json();
                 console.log(jsonResponse); 
+                if(jsonResponse.msg == 'Insertion Completed'){
+                        window.location.replace("/panel/user");
+                }
+                else {
+                        setError(['An Error has Occured','Please Retry'])
+                }
         }
         return (
                 <div>
                         <form  >
+                                {
+                                        error && 
+                                        <div className="flex flex-row justify-between items-start w-96 p-2 tracking-wider m-1 rounded-lg absolute right-0 top-0 bg-red-600 text-gray-200">
+                                                {
+
+                                                        <div >
+                                                                <div className="text-xl">{error[0]}</div>
+                                                                <div className="text-base">{error[1]}</div>
+                                                                
+                                                        </div>
+                                                }
+                                                <div><button onClick={()=>{setError("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
+                                        </div>
+                                }
                                 <div>
                                 UID: <input type="number" name="uid"
                                 onChange={()=>{setUid(event.target.value);}}
