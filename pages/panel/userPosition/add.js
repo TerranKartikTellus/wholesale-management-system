@@ -25,7 +25,18 @@ export default function Panel() {
                               <div className="p-20 bg-gray-100 mt-10 mx-10 bg-opacity-30">
                                       <div className="text-2xl tracking-wider">Add New User Position</div>
                               </div>
+                              <div><Form></Form></div>
                     </div>
           </div>
 );
+}
+function Form (){
+        return (
+                <div>
+                        <form>
+                                Position ID: <input type="number" name="Position ID"></input>
+                                Position Name: <input type="text" name="Position Name"></input>
+                        </form>
+                </div>
+        );
 }

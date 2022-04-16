@@ -11,6 +11,7 @@ export default function SidePanel(){
                               
                               
                               <div className="mt-10 ">
+                                        <a href="/panel/user/add" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Add new Users</a><br/>
                               <a href="/panel/user" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Manage Users</a><br/>
                               <a href="/panel/userPosition" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Manage User Position </a><br/>
                               <a href="/" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold ">Apply for Leave</a><br/>

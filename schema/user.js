@@ -21,14 +21,14 @@ const userSchema = new mongoose.Schema({
                       maxlength: [3, 'Position ID should be of 3 digit']
 
            },
-          adminPrivilige:{type: Character,
+          adminPrivilige:{type: String,
                           maxlength: [1, 'Please enter Y/N'],
                           required: [true, 'Please enter admin privilege']
            },
-          sex:{type: Character,
+          sex:{type: String,
                maxlength: [1, 'Please enter m/f'],
                required: [true, 'Please enter sex']
            }
 });
 
-module.exports = mongoose.models.User || mongoose.model('User', userSchema);
+module.exports = mongoose.models.user || mongoose.model('user', userSchema);
