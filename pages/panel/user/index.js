@@ -47,7 +47,7 @@ function Table({msg,users}){
       {
         users 
         ? 
-        <div className="grid  grid-cols-4">
+        <div className="flex flex-row overflow-x-auto">
           {
                                         newUser && 
                                         <div className="flex flex-row justify-between items-start w-96 p-2 tracking-wider m-1 rounded-lg absolute right-0 top-0 bg-green-600 text-gray-200">
