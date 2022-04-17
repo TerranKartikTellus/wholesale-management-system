@@ -8,7 +8,7 @@ const productSchema = new mongoose.Schema({
                     maxlength: [3, 'Product ID should be of 3 digit']
           },
           pname:{ 
-            type: CharacterData, 
+            type: String, 
             required: [true, 'Please mention the Product name'],
             unique: true,
             maxlength: [15, 'Please make sure its less than 15 charecters']

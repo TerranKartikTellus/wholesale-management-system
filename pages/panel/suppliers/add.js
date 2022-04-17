@@ -53,12 +53,12 @@ function Form(){
                         <br></br>
                         <div class="form-group">
                         <label for="sname">Supplier Name</label>
-                        <input name = "supplierName" onChange = {() => {setSNAME(event.target.value);}} type="text" class="form-control" placeholder="Enter Name"></input>
+                        <input name = "supplierName" onChange = {() => {setSNAME(event.target.value);}} type="string" class="form-control" placeholder="Enter Name"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
                         <label for="saddress">Supplier Address</label>
-                        <input name = "supplierAddress" onChange = {() => {setSADDRESS(event.target.value);}} type="text" class="form-control"  placeholder="Enter Address"></input>
+                        <input name = "supplierAddress" onChange = {() => {setSADDRESS(event.target.value);}} type="string" class="form-control"  placeholder="Enter Address"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
