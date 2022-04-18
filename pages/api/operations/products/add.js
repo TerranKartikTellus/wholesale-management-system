@@ -18,7 +18,6 @@ export default function handler(req, res) {
 //           });          
 //   }
 
-
   const {db} = await connectToDatabase();
   const data = db.collection('product');
   res.status(200).json({ name: 'John Doe' })
