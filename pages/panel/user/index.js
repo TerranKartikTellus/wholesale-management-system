@@ -79,15 +79,15 @@ return (
             
           {users.map((i,x=1)=>(
             <tr key={i.uid}  className="border-b-2 border-gray-800 tracking-wider bg-gray-700 bg-opacity-30 hover:bg-opacity-50">
-              <td className="text-lg  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{x+1}</td>
-              <td className="text-lg  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{i.uid}</td>
-              <td className="text-lg text-center px-2 py-1  bg-opacity-90" >{i.uFname}</td>
-              <td className="text-lg text-center px-2 py-1  bg-opacity-90" >{i.uLname}</td>
-              <td className="text-lg text-center px-2 py-1  bg-opacity-90" >{i.positionId}</td>
-              <td className="text-lg text-center px-2 py-1  bg-opacity-90" >{i.adminPrivilige}</td>
-              <td className="text-lg text-center px-2 py-1  bg-opacity-90" >{i.sex}</td>
+              <td className="text-lg border-r-2  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{x+1}</td>
+              <td className="text-lg border-r-2  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{i.uid}</td>
+              <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.uFname}</td>
+              <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.uLname}</td>
+              <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.positionId}</td>
+              <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.adminPrivilige}</td>
+              <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.sex}</td>
             
-              <td className="text-center px-2 py-1    bg-opacity-90 hover:bg-sky-600 transition-all duration-300 ease-in-out" >
+              <td className="text-center px-2 py-1 hover:scale-110   bg-opacity-90 hover:bg-sky-600 transition-all duration-300 ease-in-out" >
                 <a href={`/panel/user/edit?id=${i._id}`}><img src="/edit.svg" className="w-7 h-7 mx-auto"></img></a>
               </td>
               <td className="text-center px-2 py-1    bg-opacity-90  hover:bg-red-600 transition-all duration-300 ease-in-out" >
