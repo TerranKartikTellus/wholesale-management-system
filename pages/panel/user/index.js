@@ -79,7 +79,7 @@ return (
             
           {users.map((i,x=1)=>(
             <tr key={i.uid}  className="border-b-2 border-gray-800 tracking-wider bg-gray-700 bg-opacity-30 hover:bg-opacity-50">
-              <td className="text-lg  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{x}</td>
+              <td className="text-lg  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{x+1}</td>
               <td className="text-lg  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{i.uid}</td>
               <td className="text-lg text-center px-2 py-1  bg-opacity-90" >{i.uFname}</td>
               <td className="text-lg text-center px-2 py-1  bg-opacity-90" >{i.uLname}</td>
