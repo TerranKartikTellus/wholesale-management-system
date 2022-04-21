@@ -33,36 +33,73 @@ export default function Panel() {
 }
 function Form(){
         
-        const [productCaretoryId   , setPCATEGORYID]       = useState("");         
-        const [productCategory     , setPCATEGORY]         = useState(""); 
+        const [pCategoryId   , setPCATEGORYID]       = useState("");         
+        const [pCategory     , setPCATEGORY]         = useState(""); 
  
         
         
         async function submitForm(e){
-                e.preventDefault();
-                console.log(productCaretoryId,productCategory);
+         e.preventDefault();
+         console.log("sdad");
+                
+         const response = await fetch(
+                 '/api/operations/category/addcategory',
+                 {
+                         method: 'POST',
+                         body: JSON.stringify(
+                                 {
+                                         
+                                         'pCategoryId': pCategoryId,
+                                         'pCategory'  : pCategory
+                                 }
+                                 ),
+                                headers: {
+                                        'Content-Type': 'application/json'
+                                }
+                        }
+                );
+         const jsonResponse = await response.json();
+         console.log(jsonResponse); 
+         if(jsonResponse.msg == 'Insertion Completed'){
+                 window.location.replace("http://localhost:3000/panel/category");
+         }
+         else {
+                 setError(['An Error has Occured','Please Retry'])
+         }
+ }
+ return (
+         <div>
+                 <form  >
+                         {
+                                 error && 
+                                 <div className="flex flex-row justify-between items-start w-96 p-2 tracking-wider m-1 rounded-lg absolute right-0 top-0 bg-red-600 text-gray-200">
+                                         {
 
-        }
-        return(
-                <>
-                        <form >
-                        <div className="form-group">
-                        <label for="PCATEGORYID">Product Category Id</label>
-                        <input 
-                         name="productCategoryId" onChange={()=>{setPCATEGORYID(event.target.value);}}
-                        type="number" className="form-control" id="123"  placeholder="Enter Id"></input>
-                        </div>
-                        <br></br>
-                        <div className="form-group">
-                        <label for="PCATEGORY">Product category</label>
-                        <input onChange={()=>{setPCATEGORY(event.target.value);}}
-                         name="productCategory"
-                         type="string" className="form-control" id="string" placeholder="Enter category"></input>
-                        </div>
-                        <button onClick={submitForm} type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>
-                                Submit
-                        </button>
-                        </form>
-                </>
-        );
+                                                 <div >
+                                                         <div className="text-xl">{error[0]}</div>
+                                                         <div className="text-base">{error[1]}</div>
+                                                         
+                                                 </div>
+                                         }
+                                         <div><button onClick={()=>{setError("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
+                                 </div>
+                         }
+                         <div>
+                         
+
+                         pCategory: <input type="text" name="pcategory"
+                         onChange={()=>{setPCATEGORY(event.target.value);}}
+                         ></input>
+                         </div>    
+                         <div>
+                         pCategoryId: <input 
+                         onChange={()=>{setPCATEGORYID(event.target.value);}}
+                         type="number" name=""></input>        
+                         </div>
+
+                         
+                         <div><button onClick={submitForm}  name="Submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider">Add Products</button></div>
+                 </form>
+         </div>
+ );
 }

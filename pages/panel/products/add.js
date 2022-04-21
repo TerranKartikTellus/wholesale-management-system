@@ -35,76 +35,101 @@ export default function Panel() {
 function Form(){
         
         const [pid             , setPID]           = useState("");         
-        const [productName     , setPNAME]         = useState(""); 
-        const [productMRP      , setMRP]           = useState(""); 
-        const [productOPRICE   , setOriginalPrice] = useState(""); 
-        const [productRating   , setRATING]        = useState(""); 
-        const [productQuantity , setQUANTITY]      = useState(""); 
-        const [productCategory , setCATEGORY]      = useState(""); 
-        
+        const [pname     , setPNAME]         = useState(""); 
+        const [mrp      , setMRP]           = useState(""); 
+        const [originalPrice   , setOriginalPrice] = useState(""); 
+        const [rating   , setRATING]        = useState("");
+        const [quantity , setQUANTITY]      = useState(""); 
+        const [pCategoryId , setPCATEGORYID]      = useState(""); 
         
         async function submitForm(e){
-                e.preventDefault();
-                console.log(pid,productName,productMRP,productOPRICE,productRating,productQuantity,productCategory);
-
-        }
-        return(
-                <>
-                        <form >
-                        <div className="form-group">
-                        <label for="pid">Product ID</label>
-                        <input
-                         name="productID" onChange={
-                                 ()=>{
-                                         setPID(event.target.value);
-                                         console.log(pid);}
+         e.preventDefault();
+                   console.log("sdad");
+                
+         const response = await fetch(
+                 '/api/operations/products/addproduct',
+                 {
+                         method: 'POST',
+                         body: JSON.stringify(
+                                 {
+                                         'pid': pid,
+                                         'pname': pname,
+                                         'mrp': mrp,
+                                         'originalPrice': originalPrice,
+                                         'rating': rating,
+                                         'quantity': quantity,
+                                         'pCategoryId': pCategoryId
+                                 }
+                                 ),
+                                headers: {
+                                        'Content-Type': 'application/json'
                                 }
-                        type="number" className="form-control" id="123" placeholder="Enter ID"></input>
-                        </div>
-                        <br></br>
-                        <div className="form-group">
-                        <label for="pname">Product Name</label>
-                        <input 
-                         name="productName" onChange={()=>{setPNAME(event.target.value);}}
-                        type="string" className="form-control" id="name"  placeholder="Enter Name"></input>
-                        </div>
-                        <br></br>
-                        <div className="form-group">
-                        <label for="mrp">Maximum Retail Price</label>
-                        <input onChange={()=>{setMRP(event.target.value);}}
-                          name="productMRP"
-                         type="number" className="form-control" id="123" placeholder="Enter MRP"></input>
-                        </div>
-                        <br></br>
-                        <div className="form-group">
-                        <label for="originalPrice">Original Price</label>
-                        <input onChange={()=>{setOriginalPrice(event.target.value);}}
-                         name="productOriginalPrice"
-                         type="number" className="form-control" id="123" placeholder="Enter Original price"></input>
-                        </div>
-                        <br></br>
-                        <div className="form-group">
-                        <label for="rating">Please suggest a quality rating for the product </label>
-                        <input onChange={()=>{setRATING(event.target.value);}} 
-                        name="productRating" type="number" className="form-control" id="5" placeholder="Enter Rating"></input>
-                        </div>
-                        <br></br>
-                        <div className="form-group">
-                        <label for="quantity">Quantity</label>
-                        <input onChange={()=>{ setQUANTITY(event.target.value);}}
-                        name="productQuantity" type="number" className="form-control" id="124" placeholder="Please input the quantity "></input>
-                        </div>
-                        <br></br>
-                        <div className="form-group">
-                        <label for="productcategoryId">Product category Id</label>
-                        <input onChange={()=>{setCATEGORY(event.target.value);}}
-                         name="productCaretoryId"
-                         type="number" className="form-control" id="123" placeholder="Enter Id"></input>
-                        </div>
-                        <button onClick={submitForm} type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>
-                                Submit
-                        </button>
-                        </form>
-                </>
-        );
+                        }
+                );
+         const jsonResponse = await response.json();
+         console.log(jsonResponse); 
+         if(jsonResponse.msg == 'Insertion Completed'){
+                 window.location.replace("http://localhost:3000/panel/products");
+         }
+         else {
+                 setError(['An Error has Occured','Please Retry'])
+         }
+ }
+ return (
+         <div>
+                 <form  >
+                         {
+                                 error && 
+                                 <div className="flex flex-row justify-between items-start w-96 p-2 tracking-wider m-1 rounded-lg absolute right-0 top-0 bg-red-600 text-gray-200">
+                                         {
+
+                                                 <div >
+                                                         <div className="text-xl">{error[0]}</div>
+                                                         <div className="text-base">{error[1]}</div>
+                                                         
+                                                 </div>
+                                         }
+                                         <div><button onClick={()=>{setError("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
+                                 </div>
+                         }
+                         <div>
+                         pid: <input type="number" name="pid"
+                         onChange={()=>{setPID(event.target.value);}}
+                         ></input><br></br>
+
+                         pname: <input type="text" name="pname"
+                         onChange={()=>{setPNAME(event.target.value);}}
+                         ></input>
+                         </div>
+                         <div>
+                         mrp: <input 
+                         onChange={()=>{setMRP(event.target.value);}}
+                         type="number" name="mrp"></input>        
+                         </div>
+                         <div>
+                         originalPrice: <input
+                          onChange={()=>{setOriginalPrice(event.target.value);}}
+                         type="text" name="position"></input>
+                         </div>
+                         <div>
+                         rating: <input 
+                         onChange={()=>{setRATING(event.target.value);}}
+                         type="number" name="rating"></input>        
+                         </div>
+                         <div>
+                         quantity: <input 
+                         onChange={()=>{setQUANTITY(event.target.value);}}
+                         type="number" name="quantity"></input>        
+                         </div>
+                         <div>
+                         pCategoryId: <input 
+                         onChange={()=>{setPCATEGORYID(event.target.value);}}
+                         type="number" name=""></input>        
+                         </div>
+
+                         
+                         <div><button onClick={submitForm}  name="Submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider">Add Products</button></div>
+                 </form>
+         </div>
+ );
 }

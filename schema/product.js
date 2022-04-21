@@ -37,7 +37,7 @@ const productSchema = new mongoose.Schema({
             required: [true, 'Please The quantity of product'],
             unique: true,
             maxlength: [3, 'Quantity should be of 3 digit']},
-          productCategoryId:{ 
+          pCategoryId:{ 
             type: Number, 
             required: [true, 'Please add a Product category id Id'],
             unique: true,
