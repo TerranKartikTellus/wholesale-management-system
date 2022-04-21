@@ -37,13 +37,61 @@ function Form(){
         const [sname, setSNAME] = useState("");
         const [saddress, setSADDRESS] = useState("");
         const [scontact, setSCONTACT] = useState("");
+        const [error , setError] = useState();
+
+        async function submitForm(e){
+                e.preventDefault();
+             console.log("sdad");
+                     
+                     const response = await fetch(
+                             '/api/operations/supplier/addSupplier',
+                             {
+                                     method: 'POST',
+                                     body: JSON.stringify(
+                                             {
+                                                     'sid': sid,
+                                                     'sname': sname,
+                                                     'saddress': saddress,
+                                                     'scontact': scontact
+                                             }
+                                     ),
+                                     headers: {
+                                             'Content-Type': 'application/json'
+                                     }
+                             }
+                     );
+                     const jsonResponse = await response.json();
+                     console.log(jsonResponse); 
+                     if(jsonResponse.msg == 'Insertion Completed'){
+                             window.location.replace("/panel/supplier?newSupplier=New%20Supplier%20Added");
+                     }
+                     else {
+                             setError(['An Error has Occured','Please Retry'])
+                     }
+             }
 
         return(
-                <>
+                <div>
                         <form>
+                        {
+                                        error && 
+                                        <div className="flex flex-row justify-between items-start w-96 p-2 tracking-wider m-1 rounded-lg absolute right-0 top-0 bg-red-600 text-gray-200">
+                                                {
+
+                                                        <div >
+                                                                <div className="text-xl">{error[0]}</div>
+                                                                <div className="text-base">{error[1]}</div>
+                                                                
+                                                        </div>
+                                                }
+                                                <div><button onClick={()=>{setError("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
+                                        </div>
+                        }
+
+
                         <div class="form-group">
                         <label for="sid">Supplier ID</label>
-                        <input name = "supplierID" 
+                        SID: <input name = "supplierID" 
                         onChange = {() => {
                                 setSID(event.target.value); 
                                 console.log(event.target.value)}
@@ -53,20 +101,20 @@ function Form(){
                         <br></br>
                         <div class="form-group">
                         <label for="sname">Supplier Name</label>
-                        <input name = "supplierName" onChange = {() => {setSNAME(event.target.value);}} type="string" class="form-control" placeholder="Enter Name"></input>
+                        SNAME: <input name = "supplierName" onChange = {() => {setSNAME(event.target.value);}} type="string" class="form-control" placeholder="Enter Name"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
                         <label for="saddress">Supplier Address</label>
-                        <input name = "supplierAddress" onChange = {() => {setSADDRESS(event.target.value);}} type="string" class="form-control"  placeholder="Enter Address"></input>
+                        SADDRESS: <input name = "supplierAddress" onChange = {() => {setSADDRESS(event.target.value);}} type="string" class="form-control"  placeholder="Enter Address"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
                         <label for="scontact">Contact Number</label>
-                        <input name = "supplierContact" onChange = {() => {setSCONTACT(event.target.value);}} type="number" class="form-control" placeholder="Enter Contact"></input>
+                        SCONTACT: <input name = "supplierContact" onChange = {() => {setSCONTACT(event.target.value);}} type="number" class="form-control" placeholder="Enter Contact"></input>
                         </div>
                         <button type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>Submit</button>
                         </form>
-                </>
+                </div>
         );
 }
