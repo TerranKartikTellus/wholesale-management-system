@@ -39,21 +39,63 @@ function Form(){
         const [retailerName            , setRNAME]       = useState(""); 
         const [retailerAddress         , setRADDRESS]    = useState(""); 
         const [retailerContactnumber   , setRCONTACT]    = useState(""); 
-const [error , setError] = useState();
+        const [error , setError] = useState();
 
-        
-        
         async function submitForm(e){
                 e.preventDefault();
-                console.log(retailerId,retailerName,retailerAddress,retailerContactnumber);
+             console.log("sdad");
+                     
+                     const response = await fetch(
+                             '/api/operations/retailer/addRetailer',
+                             {
+                                     method: 'POST',
+                                     body: JSON.stringify(
+                                             {
+                                                     'rid': retailerId,
+                                                     'rname': retailerName,
+                                                     'raddress': retailerAddress,
+                                                     'rcontact': retailerContactnumber
+                                             }
+                                     ),
+                                     headers: {
+                                             'Content-Type': 'application/json'
+                                     }
+                             }
+                     );
+                     const jsonResponse = await response.json();
+                     console.log(jsonResponse); 
+                     if(jsonResponse.msg == 'Insertion Completed'){
+                             window.location.replace("/panel/retailer?newRetailer=New%20retailer%20Added");
+                     }
+                     else {
+                             setError(['An Error has Occured','Please Retry'])
+                     }
+             }
 
-        }
+
         return(
-                <>
+                <div>
                         <form >
+
+                        {
+                                        error && 
+                                        <div className="flex flex-row justify-between items-start w-96 p-2 tracking-wider m-1 rounded-lg absolute right-0 top-0 bg-red-600 text-gray-200">
+                                                {
+
+                                                        <div >
+                                                                <div className="text-xl">{error[0]}</div>
+                                                                <div className="text-base">{error[1]}</div>
+                                                                
+                                                        </div>
+                                                }
+                                                <div><button onClick={()=>{setError("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
+                                        </div>
+                        }
+
+
                         <div className="form-group">
                         <label for="rid">Retailer Id</label>
-                        <input 
+                        RID: <input 
                          name="retailerId" onChange={()=>{setRID(event.target.value);}}
                         type="number" className="form-control" id="123"  placeholder="Enter Id"></input>
                         </div>
@@ -82,6 +124,6 @@ const [error , setError] = useState();
                                 Submit
                         </button>
                         </form>
-                </>
+                </div>
         );
 }

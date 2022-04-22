@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import supplier from '/schema/supplier';
+import supplier from '/schema/retailer';
 
 import clientPromise from "/lib/mongodb";
 
@@ -20,13 +20,13 @@ export default async function handler(req, res) {
       res.status(500).json({ msg: 'Unable to insert' })
     }
   }
-  res.status(201).json({ sname: 'Supplier Name' })
+  res.status(201).json({ sname: 'Retailer Name' })
   console.log(
             req.body
   );
 }
 
 async function Insert(db,data){
-  const  u =  await db.collection("supplier").insert(data);
+  const  u =  await db.collection("retailer").insert(data);
   return u.insertedCount ;
 }
