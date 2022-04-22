@@ -3,7 +3,7 @@ import Head from 'next/head'
 
 
 
-export default function Panel() {
+export default function Categories() {
 const notify = [
           {msg: "User added"},
           {msg: "Used Deleted"},

@@ -39,6 +39,7 @@ function Form(){
         const [retailerName            , setRNAME]       = useState(""); 
         const [retailerAddress         , setRADDRESS]    = useState(""); 
         const [retailerContactnumber   , setRCONTACT]    = useState(""); 
+const [error , setError] = useState();
 
         
         

@@ -41,7 +41,7 @@ function Form(){
         const [rating   , setRATING]        = useState("");
         const [quantity , setQUANTITY]      = useState(""); 
         const [pCategoryId , setPCATEGORYID]      = useState(""); 
-        
+         const [error , setError] = useState();
         async function submitForm(e){
          e.preventDefault();
                    console.log("sdad");

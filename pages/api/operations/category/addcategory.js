@@ -26,6 +26,6 @@ export default async function handler(req, res) {
 }
 
 async function Insert(db,data){
-  const  u =  await db.collection("user").insert(data);
+  const  u =  await db.collection("productCategory").insert(data);
   return u.insertedCount ;
 }

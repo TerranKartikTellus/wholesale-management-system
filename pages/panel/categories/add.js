@@ -35,7 +35,7 @@ function Form(){
         
         const [pCategoryId   , setPCATEGORYID]       = useState("");         
         const [pCategory     , setPCATEGORY]         = useState(""); 
- 
+  const [error , setError] = useState();
         
         
         async function submitForm(e){

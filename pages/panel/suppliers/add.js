@@ -90,7 +90,7 @@ function Form(){
 
 
                         <div class="form-group">
-                        <label for="sid">Supplier ID</label>
+                        <label htmlfor="sid">Supplier ID</label>
                         SID: <input name = "supplierID" 
                         onChange = {() => {
                                 setSID(event.target.value); 
@@ -100,20 +100,20 @@ function Form(){
                         </div>
                         <br></br>
                         <div class="form-group">
-                        <label for="sname">Supplier Name</label>
-                        SNAME: <input name = "supplierName" onChange = {() => {setSNAME(event.target.value);}} type="string" class="form-control" placeholder="Enter Name"></input>
+                        <label htmlfor="sname">Supplier Name</label>
+                         <input name = "supplierName" onChange = {() => {setSNAME(event.target.value);}} type="string" class="form-control" placeholder="Enter Name"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
-                        <label for="saddress">Supplier Address</label>
-                        SADDRESS: <input name = "supplierAddress" onChange = {() => {setSADDRESS(event.target.value);}} type="string" class="form-control"  placeholder="Enter Address"></input>
+                        <label htmlfor="saddress">Supplier Address</label>
+                         <input name = "supplierAddress" onChange = {() => {setSADDRESS(event.target.value);}} type="string" class="form-control"  placeholder="Enter Address"></input>
                         </div>
                         <br></br>
                         <div class="form-group">
-                        <label for="scontact">Contact Number</label>
-                        SCONTACT: <input name = "supplierContact" onChange = {() => {setSCONTACT(event.target.value);}} type="number" class="form-control" placeholder="Enter Contact"></input>
+                        <label htmlfor="scontact">Contact Number</label>
+                         <input name = "supplierContact" onChange = {() => {setSCONTACT(event.target.value);}} type="number" class="form-control" placeholder="Enter Contact"></input>
                         </div>
-                        <button type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>Submit</button>
+                        <button type="submit" onClick={submitForm} className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>Submit</button>
                         </form>
                 </div>
         );
