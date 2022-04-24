@@ -41,7 +41,42 @@ export default function Panel({AllSuppliers}) {
 
 function Table({msg,suppliers}){
         const [newSupplier , setNewSupplier] = useState(msg);
+        const [error , setError] = useState();
+
+        const [id , setId] = useState();
+        async function Delete(){
+          //  e.preventDefault();
+          console.log(id);
        
+          if(confirm('Are you sure you want to delete this item ?')){
+            const response = await fetch(
+                        '/api/operations/supplier/delSupplier',
+                        {
+                                method: 'POST',
+                                body: JSON.stringify(
+                                        {
+                                                '_id': id
+                                        }
+                                ),
+                                headers: {
+                                        'Content-Type': 'application/json'
+                                }
+                        }
+                );
+                const jsonResponse = await response.json();
+                console.log(jsonResponse); 
+                if(jsonResponse.msg == 'Deletion Completed'){
+                        window.location.replace("/panel/supplier?newSupplier=Supplier%20Deleted");
+                }
+                else {
+                        setError(['An Error has Occured','Please Retry']);
+                        console.log("qw->",error);
+                }
+          }
+                
+                
+        }
+
         return(
           <div className="mx-auto flex flex-row items-center justify-center mt-5">
             {
@@ -86,9 +121,15 @@ function Table({msg,suppliers}){
                     <td className="text-center px-2 py-1 hover:scale-110   bg-opacity-90 hover:bg-sky-600 transition-all duration-300 ease-in-out" >
                       <a href={`/panel/user/edit?id=${i._id}`}><img src="/edit.svg" className="w-7 h-7 mx-auto"></img></a>
                     </td>
-                    <td className="text-center px-2 py-1  hover:scale-110   bg-opacity-90  hover:bg-red-600 transition-all duration-300 ease-in-out" >
-                      <a href={`/panel/user/delete?id=${i._id}`}><img className="w-7 h-7 mx-auto" src="/delete.svg"></img></a>
-                    </td>
+                    <td className="w-[100px] h-full" >
+                <button className="w-full h-full text-center px-2 py-1
+                  hover:scale-110   bg-opacity-90  hover:bg-red-600
+                   transition-all duration-300 ease-in-out"
+                 onClick={()=>{setId(i._id); Delete(i);}} 
+                 onMouseEnter={()=>{setId(i._id); }} >
+                   <img className="w-7 h-7 mx-auto" src="/delete.svg"></img>
+                </button>
+              </td>
                   
                   </tr>
                 ))}
