@@ -13,13 +13,13 @@ const retailerSchema = new mongoose.Schema({
             unique: true,
             maxlength: [15, 'Please make sure its less than 15 charecters']
            },
-          address:{
+          raddress:{
             type: String, 
             required: [true, 'Please mention the retailer address'],
             unique: true,
             maxlength: [15, 'Please make sure its less than 15 charecters']
            },
-          contact:{
+          rcontact:{
             type: Number, 
             required: [true, 'Please add a contact number'],
             unique: true,
