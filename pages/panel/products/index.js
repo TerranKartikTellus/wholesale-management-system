@@ -83,7 +83,7 @@ return (
         error && <div>{error}</div>
       }
       {
-        users 
+        products 
         ? 
         <div className="">
           {
