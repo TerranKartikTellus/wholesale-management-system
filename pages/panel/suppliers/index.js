@@ -11,7 +11,7 @@ export default function Panel({AllSuppliers}) {
         const msgNewSupplier =[ null , null ];
         const router = useRouter()
         console.log(router.query.newSupplier);
-        console.log(AllSuppliers);
+        console.log("-----------------------",AllSuppliers);
 
           return (
           <div className="flex flex-row h-screen items-start overflow-y-hidden">
@@ -31,7 +31,7 @@ export default function Panel({AllSuppliers}) {
                               </div>
                               <div className="p-20 bg-gray-100 mt-10 mx-10 bg-opacity-30">
                                       <div className="text-2xl tracking-wider">Suppliers</div>
-                                      <div className="mx-auto "><Table msg={router.query.newSupplier} categories={AllSuppliers}></Table></div>
+                                      <div className="mx-auto "><Table msg={router.query.newSupplier} suppliers={AllSuppliers}></Table></div>
                               </div>
                     </div>
           </div>
@@ -41,7 +41,7 @@ export default function Panel({AllSuppliers}) {
 
 function Table({msg,suppliers}){
         const [newSupplier , setNewSupplier] = useState(msg);
-       
+       console.log("--------------",suppliers);
         return(
           <div className="mx-auto flex flex-row items-center justify-center mt-5">
             {
@@ -114,7 +114,7 @@ function Table({msg,suppliers}){
         
         return {
           props: {
-            Allcategories: JSON.parse(JSON.stringify(AllSuppliers)),
+            AllSuppliers: JSON.parse(JSON.stringify(AllSuppliers)),
           } // will be passed to the page component as props
         }
       }
