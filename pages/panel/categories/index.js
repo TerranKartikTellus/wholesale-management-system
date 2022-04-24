@@ -6,7 +6,7 @@ import React ,{useState} from "react"
 import { useRouter } from 'next/router';
 
 
-export default function Panel({Allproducts}) {
+export default function Panel({Allcategories}) {
  const msgNewCategory =[ null , null ];
 // const msgNewSupplier =[ null , null ];
 // const msgNewRetailer =[ null , null ];
@@ -71,7 +71,7 @@ return (
                 
               </tr>
             
-          {products.map((i,x=1)=>(
+          {categories.map((i,x=1)=>(
             <tr key={i.pCategoryId}  className="border-b-2 border-gray-800 tracking-wider bg-gray-700 bg-opacity-30 hover:bg-opacity-50">
               <td className="text-lg border-r-2  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{x+1}</td>
               <td className="text-lg border-r-2  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{i.pCategoryId}</td>
