@@ -31,7 +31,7 @@ export default function Panel({AllSuppliers}) {
                               </div>
                               <div className="p-20 bg-gray-100 mt-10 mx-10 bg-opacity-30">
                                       <div className="text-2xl tracking-wider">Suppliers</div>
-                                      <div className="mx-auto "><Table msg={router.query.newSupplier} categories={AllSuppliers}></Table></div>
+                                      <div className="mx-auto "><Table msg={router.query.AllSuppliers} suppliers={AllSuppliers}></Table></div>
                               </div>
                     </div>
           </div>
@@ -79,8 +79,8 @@ function Table({msg,suppliers}){
                     <td className="text-lg border-r-2  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{x+1}</td>
                     <td className="text-lg border-r-2  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{i.sid}</td>
                     <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.sname}</td>
-                    <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.address}</td>
-                    <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.contact}</td>
+                    <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.saddress}</td>
+                    <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.scontact}</td>
       
                   
                     <td className="text-center px-2 py-1 hover:scale-110   bg-opacity-90 hover:bg-sky-600 transition-all duration-300 ease-in-out" >
@@ -114,7 +114,7 @@ function Table({msg,suppliers}){
         
         return {
           props: {
-            Allcategories: JSON.parse(JSON.stringify(AllSuppliers)),
+            AllSuppliers: JSON.parse(JSON.stringify(AllSuppliers)),
           } // will be passed to the page component as props
         }
       }
