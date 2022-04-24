@@ -41,9 +41,47 @@ return (
 }
  function Table({msg,users}){
   const [newUser , setNewUser] = useState(msg);
- 
+  const [error , setError] = useState();
+
+  const [id , setId] = useState();
+   async function Delete(){
+          //  e.preventDefault();
+          console.log(id);
+       
+          if(confirm('Are you sure you want to delete this item ?')){
+            const response = await fetch(
+                        '/api/operations/user/delUser',
+                        {
+                                method: 'POST',
+                                body: JSON.stringify(
+                                        {
+                                                '_id': id
+                                        }
+                                ),
+                                headers: {
+                                        'Content-Type': 'application/json'
+                                }
+                        }
+                );
+                const jsonResponse = await response.json();
+                console.log(jsonResponse); 
+                if(jsonResponse.msg == 'Deletion Completed'){
+                        window.location.replace("/panel/user?newUser=User%20Deleted");
+                }
+                else {
+                        setError(['An Error has Occured','Please Retry']);
+                        console.log("qw->",error);
+                }
+          }
+                
+                
+        }
+
   return(
     <div className="mx-auto flex flex-row items-center justify-center mt-5">
+      {
+        error && <div>{error}</div>
+      }
       {
         users 
         ? 
@@ -78,7 +116,7 @@ return (
               </tr>
             
           {users.map((i,x=1)=>(
-            <tr key={i.uid}  className="border-b-2 border-gray-800 tracking-wider bg-gray-700 bg-opacity-30 hover:bg-opacity-50">
+            <tr key={i._id}  className="border-b-2 border-gray-800 tracking-wider bg-gray-700 bg-opacity-30 hover:bg-opacity-50">
               <td className="text-lg border-r-2  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{x+1}</td>
               <td className="text-lg border-r-2  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{i.uid}</td>
               <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.uFname}</td>
@@ -88,10 +126,16 @@ return (
               <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.sex}</td>
             
               <td className="text-center px-2 py-1 hover:scale-110   bg-opacity-90 hover:bg-sky-600 transition-all duration-300 ease-in-out" >
-                <a href={`/panel/user/edit?id=${i._id}`}><img src="/edit.svg" className="w-7 h-7 mx-auto"></img></a>
+                <button href={`/panel/user/edit?id=${i._id}`}><img src="/edit.svg" className="w-7 h-7 mx-auto"></img></button>
               </td>
-              <td className="text-center px-2 py-1  hover:scale-110   bg-opacity-90  hover:bg-red-600 transition-all duration-300 ease-in-out" >
-                <a href={`/panel/user/delete?id=${i._id}`}><img className="w-7 h-7 mx-auto" src="/delete.svg"></img></a>
+              <td className="w-[100px] h-full" >
+                <button className="w-full h-full text-center px-2 py-1
+                  hover:scale-110   bg-opacity-90  hover:bg-red-600
+                   transition-all duration-300 ease-in-out"
+                 onClick={()=>{setId(i._id); Delete(i);}} 
+                 onMouseEnter={()=>{setId(i._id); }} >
+                   <img className="w-7 h-7 mx-auto" src="/delete.svg"></img>
+                </button>
               </td>
             
             </tr>
