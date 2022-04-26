@@ -31,7 +31,11 @@ export default function Panel({AllSuppliers}) {
                               </div>
                               <div className="p-20 bg-gray-100 mt-10 mx-10 bg-opacity-30">
                                       <div className="text-2xl tracking-wider">Suppliers</div>
+
                                       <div className="mx-auto "><Table msg={router.query.newSupplier} suppliers={AllSuppliers}></Table></div>
+
+                                      <div className="mx-auto "><Table msg={router.query.AllSuppliers} suppliers={AllSuppliers}></Table></div>
+
                               </div>
                     </div>
           </div>
@@ -41,7 +45,45 @@ export default function Panel({AllSuppliers}) {
 
 function Table({msg,suppliers}){
         const [newSupplier , setNewSupplier] = useState(msg);
+
        console.log("--------------",suppliers);
+
+        const [error , setError] = useState();
+
+        const [id , setId] = useState();
+        async function Delete(){
+          //  e.preventDefault();
+          console.log(id);
+       
+          if(confirm('Are you sure you want to delete this item ?')){
+            const response = await fetch(
+                        '/api/operations/supplier/delSupplier',
+                        {
+                                method: 'POST',
+                                body: JSON.stringify(
+                                        {
+                                                '_id': id
+                                        }
+                                ),
+                                headers: {
+                                        'Content-Type': 'application/json'
+                                }
+                        }
+                );
+                const jsonResponse = await response.json();
+                console.log(jsonResponse); 
+                if(jsonResponse.msg == 'Deletion Completed'){
+                        window.location.replace("/panel/supplier?newSupplier=Supplier%20Deleted");
+                }
+                else {
+                        setError(['An Error has Occured','Please Retry']);
+                        console.log("qw->",error);
+                }
+          }
+                
+                
+        }
+
         return(
           <div className="mx-auto flex flex-row items-center justify-center mt-5">
             {
@@ -79,16 +121,22 @@ function Table({msg,suppliers}){
                     <td className="text-lg border-r-2  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{x+1}</td>
                     <td className="text-lg border-r-2  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{i.sid}</td>
                     <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.sname}</td>
-                    <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.address}</td>
-                    <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.contact}</td>
+                    <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.saddress}</td>
+                    <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.scontact}</td>
       
                   
                     <td className="text-center px-2 py-1 hover:scale-110   bg-opacity-90 hover:bg-sky-600 transition-all duration-300 ease-in-out" >
                       <a href={`/panel/user/edit?id=${i._id}`}><img src="/edit.svg" className="w-7 h-7 mx-auto"></img></a>
                     </td>
-                    <td className="text-center px-2 py-1  hover:scale-110   bg-opacity-90  hover:bg-red-600 transition-all duration-300 ease-in-out" >
-                      <a href={`/panel/user/delete?id=${i._id}`}><img className="w-7 h-7 mx-auto" src="/delete.svg"></img></a>
-                    </td>
+                    <td className="w-[100px] h-full" >
+                <button className="w-full h-full text-center px-2 py-1
+                  hover:scale-110   bg-opacity-90  hover:bg-red-600
+                   transition-all duration-300 ease-in-out"
+                 onClick={()=>{setId(i._id); Delete(i);}} 
+                 onMouseEnter={()=>{setId(i._id); }} >
+                   <img className="w-7 h-7 mx-auto" src="/delete.svg"></img>
+                </button>
+              </td>
                   
                   </tr>
                 ))}

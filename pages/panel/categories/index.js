@@ -16,7 +16,7 @@ console.log(Allcategories);
 return (
           <div className="flex flex-row h-screen items-start overflow-y-hidden">
                      <Head>
-        <title>View All categoriess </title>
+        <title>View All categories </title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
                     <div className="h-full bg-gray-200  w-3/12"><SidePanel></SidePanel></div>

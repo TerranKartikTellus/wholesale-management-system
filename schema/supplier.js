@@ -13,13 +13,13 @@ const supplierSchema = new mongoose.Schema({
             unique: true,
             maxlength: [10, 'Please make sure its less than 10 charecters']
           },
-          address:{
+          saddress:{
             type: String, 
             required: [true, 'Please enter the registered address of the supplier'],
             unique: true,
             maxlength: [30, 'Please make sure its less than 30 charecters']
            },
-          contact:{
+          scontact:{
             type: String, 
             required: [true, 'Please add ue email id for contact purposes'],
             unique: true,
