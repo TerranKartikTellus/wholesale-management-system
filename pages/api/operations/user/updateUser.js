@@ -2,10 +2,11 @@
 import user from '/schema/user';
 
 import clientPromise from "/lib/mongodb";
+const { ObjectId } = require('mongodb');
 
 export default async function handler(req, res) {
    console.log(
-            req.body
+            'api got',req.body
   );
  const client = await clientPromise;
  const db = client.db("wholesale");
@@ -13,20 +14,39 @@ export default async function handler(req, res) {
     res.status(500).json({ msg: 'Invalid Inputs' })
   }else{
     try{
-    if(Insert(db,req.body)){
-    res.status(201).json({ msg: 'Insertion Completed' })
+    if(Update(db,req.body)){
+     res.status(201).json({ msg: 'Update Completed',worked: 1 })
     }
     }catch(e){
-      res.status(500).json({ msg: 'unable to insert' })
+      res.status(500).json({ msg: 'unable to update' })
     }
   }
-  res.status(201).json({ name: 'John Doe' })
+  
+  
   console.log(
             req.body
   );
 }
 
 async function Update(db,data){
-  const  u =  await db.collection("user").insert(data);
-  return u.insertedCount ;
+  const rowId =  ObjectId(data._id);
+  console.log('ddaattaa',data);
+  
+  const  u =  await db.collection("user")
+  .updateOne(
+            {  _id: rowId  },
+            {
+               $set: {
+                      "uid": `${data.uid}`,
+                      "uFname": `${data.uFname}`,
+                      "uLname": `${data.uLname}`,
+                      "positionId": `${data.positionId}`,
+                      "adminPrivilige": `${data.adminPrivilige}`,
+                      "sex": `${data.sex}`
+                    } 
+    }
+ );
+ console.log('modifiedCount:',u.modifiedCount);
+  return u.modifiedCount ;
 }
+// db.user.updateOne( {_id: ObjectId('625c3e5b52d6af366088efbd') }, {$set: {uid: 34}} );

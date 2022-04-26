@@ -28,7 +28,8 @@ export default async function handler(req, res) {
 }
 
 async function Delete(db,id){
-        const rowId =  ObjectId(id);
+
+  const rowId =  ObjectId(id);
   const  u =  await db.collection("user").deleteOne({ "_id": rowId });
   console.log("Message from mongodb after performing deleteop",u);
   return u.deletedCount ;

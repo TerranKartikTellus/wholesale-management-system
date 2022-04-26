@@ -213,10 +213,10 @@ function Tank({upd}){
         
         console.log('sexxxx',upd[0]);
 
-        const [uid , setUid] = useState();
-        const [uname , setUname] = useState();
-        const [lname , setLname] = useState();
-        const [position , setPosition] = useState();
+        const [uid , setUid] = useState(upd[1]);
+        const [uname , setUname] = useState(upd[2]);
+        const [lname , setLname] = useState(upd[3]);
+        const [position , setPosition] = useState(upd[4]);
         const [adminP , setAdminP] = useState(upd[5]);
         const [sex , setSex] = useState(upd[6]);
         const [error , setError] = useState();
@@ -245,8 +245,8 @@ function Tank({upd}){
                         }
                 );
                 const jsonResponse = await response.json();
-                console.log(jsonResponse); 
-                if(jsonResponse.msg == 'Update Completed'){
+                console.log('json ressssppp',jsonResponse); 
+                if(jsonResponse.worked){
                         window.location.replace("/panel/user?newUser=Updated%20User");
                 }
                 else {
