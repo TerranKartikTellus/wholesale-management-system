@@ -31,7 +31,7 @@ return (
                               </div>
                               <div className="mt-8 m-3 p-8 mx-auto">
                                 <div className="mx-auto text-5xl font-mono font-bold">All categories</div>
-                                <div className="mx-auto "><Table msg={router.query.newcategory} categories={Allcategories}></Table></div>
+                                <div className="mx-auto "><Table msg={router.query.msg} categories={Allcategories}></Table></div>
                               </div>
                     </div>
                     

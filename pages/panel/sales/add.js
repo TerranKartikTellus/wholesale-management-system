@@ -1,9 +1,10 @@
 import SidePanel from "/components/sidepanel";
 import Head from 'next/head'
+import clientPromise from "/lib/mongodb";
 
+import { useState } from "react";
 
-
-export default function Panel() {
+export default function Panel({products}) {
 
           return (
           <div className="flex flex-row h-screen items-start overflow-y-hidden">
@@ -24,7 +25,7 @@ export default function Panel() {
                               <div className="p-20 bg-gray-100 mt-10 mx-10 bg-opacity-30">
                                       <div className="text-2xl tracking-wider">Add new Sales</div>
                                       <br></br>
-                                      <div><Form></Form></div>
+                                      <div><Form product={products}></Form></div>
                               </div>
 
                         
@@ -34,7 +35,7 @@ export default function Panel() {
 );
 }
 
-function Form(){
+function Form({product}){
           async function submitForm(e){
          e.preventDefault();
                    console.log("sdad");
@@ -68,6 +69,9 @@ function Form(){
                  setError(['An Error has Occured','Please Retry'])
          }
  }
+const [cart,setCart] = useState([]);
+
+ console.log("products: ",product);
         return(
                 <>
                         <form>
@@ -124,18 +128,50 @@ function Form(){
                            
                          </div>
 
-
+                        <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                          <div  className="w-1/2 bg-transparent" > Add a product to cart:</div>
+                           <select onChangeCapture={(i)=>{
+                                   let c=cart;
+                                   let data = event.target.value;
+                                   console.log('data',data);
+                                   data= new Object(data);
+                                   c.push( data );
+                                   console.log('c',c);
+                                   setCart(c);
+                                   console.log('cart',c);
+                           }} id="cars" name="cars" className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900">
+                             
+                            {
+                                    product.map(i=>(
+                                            <option  key={i.pid} value={{pid: i.pid, pname: i.pname,originalPrice: i.originalPrice}}>{i.pname}</option>
+                                    ))
+                            }
+                             
+                            
+                           </select>
+                         </div>
 
                          <div>
                                  <div>Cart</div>
                                  <div>
                                          <table>
                                                  <thead>
-                                                         <th>Product</th>
+                                                         <th>Product ID</th>
+                                                         <th>Product Name</th>
                                                          <th>Prize</th>
-                                                         
-                                                         
                                                  </thead>
+                                                 
+                                                 {
+                                                         cart &&
+                                                         cart.map(i=>{
+                                                          <tr>
+                                                            <th>{i.pid}</th>
+                                                            <th>{i.pname}</th>
+                                                            <th>{i.originalPrice}</th>
+                                                         
+                                                          </tr>
+                                                         })
+                                                 }
                                          </table>
                                  </div>
                          </div>
@@ -144,4 +180,22 @@ function Form(){
                         </form>
                 </>
         );
+}
+export async function getServerSideProps(context) {
+ 
+   const client = await clientPromise;
+ const db = client.db("wholesale");
+  const products = await db
+    .collection("product")
+    .find({})
+    .sort({ metacritic: -1 })
+    .limit(20)
+    .toArray();
+
+  
+  return {
+    props: {
+      products: JSON.parse(JSON.stringify(products)),
+    } // will be passed to the page component as props
+  }
 }

@@ -1,10 +1,11 @@
-import user from '/schema/productCategory';
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import user from '/schema/user';
 
 import clientPromise from "/lib/mongodb";
 
 export default async function handler(req, res) {
    console.log(
-            '322222222222222222222222',req.body
+            req.body
   );
  const client = await clientPromise;
  const db = client.db("wholesale");
@@ -13,9 +14,7 @@ export default async function handler(req, res) {
   }else{
     try{
     if(Insert(db,req.body)){
-      console.log('reqb',req.body);
-    res.status(201).json({ msg: 'Insertion Completed' });
-
+    res.status(201).json({ msg: 'Insertion Completed' })
     }
     }catch(e){
       res.status(500).json({ msg: 'unable to insert' })
@@ -27,8 +26,7 @@ export default async function handler(req, res) {
   );
 }
 
-async function Insert(db,data){
-  const  u =  await db.collection("productCategory").insert(data);
-  console.log('u',u);
+async function Update(db,data){
+  const  u =  await db.collection("user").insert(data);
   return u.insertedCount ;
 }

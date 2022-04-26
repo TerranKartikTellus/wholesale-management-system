@@ -70,7 +70,7 @@ function Form({cate}){
          const jsonResponse = await response.json();
          console.log(jsonResponse); 
          if(jsonResponse.msg == 'Insertion Completed'){
-                 window.location.replace("http://localhost:3000/panel/products");
+                 window.location.replace("http://localhost:3000/panel/products?msg=Item%20Added");
          }
          else {
                  setError(['An Error has Occured','Please Retry'])

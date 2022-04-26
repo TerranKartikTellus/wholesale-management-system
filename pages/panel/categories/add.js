@@ -40,7 +40,7 @@ function Form(){
         
         async function submitForm(e){
          e.preventDefault();
-         console.log("sdad");
+         
                 
          const response = await fetch(
                  '/api/operations/category/addcategory',
@@ -61,7 +61,7 @@ function Form(){
          const jsonResponse = await response.json();
          console.log(jsonResponse); 
          if(jsonResponse.msg == 'Insertion Completed'){
-                 window.location.replace("http://localhost:3000/panel/category");
+                 window.location.replace("http://localhost:3000/panel/categories?msg=Item%20Added");
          }
          else {
                  setError(['An Error has Occured','Please Retry'])

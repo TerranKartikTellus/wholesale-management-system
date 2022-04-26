@@ -88,34 +88,39 @@ function Form (){
                                                 <div><button onClick={()=>{setError("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
                                         </div>
                                 }
-                                <div>
-                                UID: <input required type="number" name="uid"
+                                <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                                <div   className="w-1/2 bg-transparent" >UID:</div> 
+                                <input className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" required type="number" name="uid"
                                 onChange={()=>{setUid(event.target.value);}}
                                 ></input><br></br>
-
-                                Uname: <input required type="text" name="uname"
+                                </div>
+                                <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                                <div  className="w-1/2 bg-transparent" >Uname:</div> 
+                                <input className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" required type="text" name="uname"
                                 onChange={()=>{setUname(event.target.value);}}
                                 ></input>
                                 </div>
-                                <div>
-                                Lname: <input required 
+                                <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                                <div  className="w-1/2 bg-transparent" >Lname:</div>
+                                 <input className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" required 
                                 onChange={()=>{setLname(event.target.value);}}
                                 type="text" name="lname"></input>        
                                 </div>
-                                <div>
-                                Position: <input required
+                                <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                                <div  className="w-1/2 bg-transparent" >Position:</div> 
+                                <input className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" required
                                  onChange={()=>{setPosition(event.target.value);}}
                                 type="text" name="position"></input>
                                 </div>
-                                <div>
+                                <div  className="text-xl">
                                         <label for="admin">Admin Privilege:</label>
 
-                                        <button className="bg-gray-900 text-lg text-gray-100 p-2 rounded" onClick={(e)=>{ e.preventDefault(); adminP=='Y' ?  setAdminP( 'N' ) : setAdminP( 'Y' )  } }>{adminP}</button>
+                                        <button className="bg-gray-900 w-[100px] text-lg ml-[288px] my-2 text-gray-100 p-2 rounded" onClick={(e)=>{ e.preventDefault(); adminP=='Y' ?  setAdminP( 'N' ) : setAdminP( 'Y' )  } }>{adminP}</button>
                                 </div>
-                                <div>
+                                <div   className="text-xl">
                                         <label for="sex">Sex:</label>
 
-                                        <button className="bg-gray-900 text-lg text-gray-100 p-2 rounded" onClick={(e)=>{ e.preventDefault(); sex=='M' ?  setSex( 'F' ) : setSex( 'M' )  } }>{sex}</button>
+                                        <button className="bg-gray-900 text-lg w-[100px] ml-96 text-gray-100 p-2 rounded" onClick={(e)=>{ e.preventDefault(); sex=='M' ?  setSex( 'F' ) : setSex( 'M' )  } }>{sex}</button>
                                 </div>
                                 <div><button onClick={submitForm}  name="Submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider">Add User</button></div>
                         </form>
