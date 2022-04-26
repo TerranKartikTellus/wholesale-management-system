@@ -12,7 +12,7 @@ export default function Panel({Allcategories}) {
 // const msgNewRetailer =[ null , null ];
 const router = useRouter()
   console.log(router.query.newcategory);
-console.log(Allcategories);
+console.log("----",Allcategories);
 return (
           <div className="flex flex-row h-screen items-start overflow-y-hidden">
                      <Head>
@@ -40,7 +40,7 @@ return (
 }
  function Table({msg,categories}){
   const [newcategory , setNewcategory] = useState(msg);
- 
+ console.log(categories);
   return(
     <div className="mx-auto flex flex-row items-center justify-center mt-5">
       {
@@ -67,7 +67,8 @@ return (
                 <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Sno</th>
                 <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Product Categoryid</th>
                 <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Product category</th>
- 
+                 <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Update</th>
+                <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Delete</th>
                 
               </tr>
             
@@ -100,7 +101,7 @@ export async function getServerSideProps(context) {
    const client = await clientPromise;
  const db = client.db("wholesale");
   const Allcategories = await db
-    .collection("category")
+    .collection("productCategory")
     .find({})
     .sort({ metacritic: -1 })
     .limit(20)

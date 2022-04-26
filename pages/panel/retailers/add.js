@@ -93,32 +93,35 @@ function Form(){
                         }
 
 
-                        <div className="form-group">
-                        <label for="rid">Retailer Id</label>
-                        RID: <input 
+                        <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" for="rid">Retailer Id</label>
+                        <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
                          name="retailerId" onChange={()=>{setRID(event.target.value);}}
-                        type="number" className="form-control" id="123"  placeholder="Enter Id"></input>
+                        type="number"  id="123"  placeholder="Enter Id"></input>
                         </div>
+
                         <br></br>
-                        <div className="form-group">
-                        <label for="rname">Product Name</label>
-                        <input 
+                        <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" for="rname">Product Name</label>
+                        <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
                          name="retailerName" onChange={()=>{setRNAME(event.target.value);}}
-                        type="string" className="form-control" id="name"  placeholder="Enter Name"></input>
+                        type="string"  id="name"  placeholder="Enter Name"></input>
                         </div>
                         <br></br>
-                        <div className="form-group">
-                        <label for="raddress">Retailer address</label>
-                        <input onChange={()=>{setRADDRESS(event.target.value);}}
+
+                        <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" for="raddress">Retailer address</label>
+                        <input required className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" onChange={()=>{setRADDRESS(event.target.value);}}
                           name="retaileraddress"
-                         type="string" className="form-control" id="address" placeholder="Enter Address"></input>
+                         type="string"  id="address" placeholder="Enter Address"></input>
                         </div>
                         <br></br>
-                        <div className="form-group">
-                        <label for="rcontact">Retailer Contact</label>
-                        <input onChange={()=>{setRCONTACT(event.target.value);}}
+
+                        <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" for="rcontact">Retailer Contact</label>
+                        <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" onChange={()=>{setRCONTACT(event.target.value);}}
                          name="retailerContactnumber"
-                         type="number" className="form-control" id="123" placeholder="Enter Contact number"></input>
+                         type="number"  id="123" placeholder="Enter Contact number"></input>
                         </div>
                         <button onClick={submitForm} type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>
                                 Submit

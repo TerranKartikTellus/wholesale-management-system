@@ -89,21 +89,21 @@ function Form (){
                                         </div>
                                 }
                                 <div>
-                                UID: <input type="number" name="uid"
+                                UID: <input required type="number" name="uid"
                                 onChange={()=>{setUid(event.target.value);}}
                                 ></input><br></br>
 
-                                Uname: <input type="text" name="uname"
+                                Uname: <input required type="text" name="uname"
                                 onChange={()=>{setUname(event.target.value);}}
                                 ></input>
                                 </div>
                                 <div>
-                                Lname: <input 
+                                Lname: <input required 
                                 onChange={()=>{setLname(event.target.value);}}
                                 type="text" name="lname"></input>        
                                 </div>
                                 <div>
-                                Position: <input
+                                Position: <input required
                                  onChange={()=>{setPosition(event.target.value);}}
                                 type="text" name="position"></input>
                                 </div>

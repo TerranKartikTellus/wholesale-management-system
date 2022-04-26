@@ -84,15 +84,16 @@ function Form(){
                                          <div><button onClick={()=>{setError("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
                                  </div>
                          }
-                         <div>
-                         
-
-                         pCategory: <input type="text" name="pcategory"
+                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
+           
+                         <div className="w-1/2 bg-transparent">Product Category:</div>
+                          <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" type="text" name="pcategory"
                          onChange={()=>{setPCATEGORY(event.target.value);}}
                          ></input>
                          </div>    
-                         <div>
-                         pCategoryId: <input 
+                         <div className=" flex flex-row text-xl capitalize justify-start items-center"> 
+                         <div className="w-1/2 bg-transparent">Product Category Id: </div>
+                         <input  required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
                          onChange={()=>{setPCATEGORYID(event.target.value);}}
                          type="number" name=""></input>        
                          </div>

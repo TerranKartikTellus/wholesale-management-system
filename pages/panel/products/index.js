@@ -32,7 +32,7 @@ return (
                               </div>
                               <div className="mt-8 m-3 p-8 mx-auto">
                                 <div className="mx-auto text-5xl font-mono font-bold">All products</div>
-                                <div className="mx-auto "><Table msg={router.query.newproduct} users={Allproducts}></Table></div>
+                                <div className="mx-auto "><Table msg={router.query.newproduct} products={Allproducts}></Table></div>
                               </div>
                     </div>
                     
@@ -101,7 +101,7 @@ return (
                                         </div>
           }
           <div>
-            <table className="text-center px-2 py-1 "> 
+            <table className="text-center px-2 py-1 scale-90"> 
               <tr className="font-mono text-xl border-b-4 tracking-widest">
                 <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Sno</th>
                 <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">PID</th>
@@ -110,8 +110,7 @@ return (
                 <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">orignalPrice</th>
                 <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">rating</th>
                 <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">quantity</th>
-                <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">quantity</th>
-                <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">pCategoryId</th>
+                <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100 text-sm"> Product Category Id</th>
                 <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Update</th>
                 <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Delete</th>
                 

@@ -112,7 +112,8 @@ function Table({msg,suppliers}){
                       <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Supplier Name</th>
                       <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Address</th>
                       <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Contact</th>
-       
+                       <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Update</th>
+                <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Delete</th>
                       
                     </tr>
                   

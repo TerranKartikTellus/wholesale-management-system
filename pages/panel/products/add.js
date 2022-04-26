@@ -1,9 +1,10 @@
 import SidePanel from "/components/sidepanel";
 import Head from 'next/head'
 import { useState } from "react";
+import clientPromise from "/lib/mongodb";
 
 
-export default function Panel() {
+export default function Panel({Allcategories}) {
 
 
           return (
@@ -25,14 +26,14 @@ export default function Panel() {
                               <div className="p-20 bg-gray-100 mt-10 mx-10 bg-opacity-30">
                                       <div className="text-2xl tracking-wider">Add New Product</div>
                                       <br></br>
-                                      <div><Form></Form></div>
+                                      <div><Form cate={Allcategories}></Form></div>
                               </div>
                               
                     </div>
           </div>
 );
 }
-function Form(){
+function Form({cate}){
         
         const [pid             , setPID]           = useState("");         
         const [pname     , setPNAME]         = useState(""); 
@@ -92,39 +93,61 @@ function Form(){
                                          <div><button onClick={()=>{setError("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
                                  </div>
                          }
-                         <div>
-                         pid: <input type="number" name="pid"
+                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                         <div className="w-1/2 bg-transparent">pid:</div> 
+                         <input required className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" type="number" name="pid"
                          onChange={()=>{setPID(event.target.value);}}
                          ></input><br></br>
-
-                         pname: <input type="text" name="pname"
+                        </div>
+                        <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                         <div  className="w-1/2 bg-transparent" >pname:</div>
+                          <input required className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" type="text" name="pname"
                          onChange={()=>{setPNAME(event.target.value);}}
                          ></input>
                          </div>
-                         <div>
-                         mrp: <input 
+
+                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                         <div  className="w-1/2 bg-transparent" >mrp:</div> 
+                         <input required className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
                          onChange={()=>{setMRP(event.target.value);}}
                          type="number" name="mrp"></input>        
                          </div>
-                         <div>
-                         originalPrice: <input
+
+                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                         <div  className="w-1/2 bg-transparent" >originalPrice:</div>
+                          <input required className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
                           onChange={()=>{setOriginalPrice(event.target.value);}}
                          type="text" name="position"></input>
                          </div>
-                         <div>
-                         rating: <input 
+                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                         <div  className="w-1/2 bg-transparent" >rating:</div> 
+                         <input  required className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
                          onChange={()=>{setRATING(event.target.value);}}
                          type="number" name="rating"></input>        
                          </div>
-                         <div>
-                         quantity: <input 
+                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                         <div  className="w-1/2 bg-transparent" >quantity: 
+                         </div>
+                         <input  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
                          onChange={()=>{setQUANTITY(event.target.value);}}
                          type="number" name="quantity"></input>        
                          </div>
-                         <div>
-                         pCategoryId: <input 
+                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                          <div  className="w-1/2 bg-transparent" > Product Category Id:</div>
+                           <select onChangeCapture={()=>{setPCATEGORYID(event.target.value);}} id="cars" name="cars" className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900">
+                             
+                            {
+                                    cate.map(i=>(
+                                            <option onClick={()=>{setPCATEGORYID(event.target.value);}} key={i.pCategoryId} value={i.pCategoryId}>{i.pCategory}</option>
+                                    ))
+                            }
+                             
+                            
+                           </select>
+                           
+                           {/* <input  "
                          onChange={()=>{setPCATEGORYID(event.target.value);}}
-                         type="number" name=""></input>        
+                         type="number" name=""></input>         */}
                          </div>
 
                          
@@ -132,4 +155,23 @@ function Form(){
                  </form>
          </div>
  );
+}
+
+export async function getServerSideProps(context) {
+ 
+   const client = await clientPromise;
+ const db = client.db("wholesale");
+  const Allcategories = await db
+    .collection("productCategory")
+    .find({})
+    .sort({ metacritic: -1 })
+    .limit(20)
+    .toArray();
+  console.log(Allcategories);
+  
+  return {
+    props: {
+      Allcategories: JSON.parse(JSON.stringify(Allcategories)),
+    } // will be passed to the page component as props
+  }
 }

@@ -89,29 +89,33 @@ function Form(){
                         }
 
 
-                        <div class="form-group">
-                        <label htmlfor="sid">Supplier ID</label>
-                        SID: <input name = "supplierID" 
+                        <div  className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" htmlfor="sid">Supplier ID</label>
+                         <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierID" 
                         onChange = {() => {
                                 setSID(event.target.value); 
                                 console.log(event.target.value)}
                                 } 
                                 type="number" class="form-control" aria-describedby="emailHelp" placeholder="Enter ID"></input>
                         </div>
+
                         <br></br>
-                        <div class="form-group">
-                        <label htmlfor="sname">Supplier Name</label>
-                         <input name = "supplierName" onChange = {() => {setSNAME(event.target.value);}} type="string" class="form-control" placeholder="Enter Name"></input>
+                        
+                        <div  className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" htmlfor="sname">Supplier Name</label>
+                         <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierName" onChange = {() => {setSNAME(event.target.value);}} type="string" class="form-control" placeholder="Enter Name"></input>
                         </div>
                         <br></br>
-                        <div class="form-group">
-                        <label htmlfor="saddress">Supplier Address</label>
-                         <input name = "supplierAddress" onChange = {() => {setSADDRESS(event.target.value);}} type="string" class="form-control"  placeholder="Enter Address"></input>
+                        
+                        <div  className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" htmlfor="saddress">Supplier Address</label>
+                         <input  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierAddress" onChange = {() => {setSADDRESS(event.target.value);}} type="string" class="form-control"  placeholder="Enter Address"></input>
                         </div>
                         <br></br>
-                        <div class="form-group">
-                        <label htmlfor="scontact">Contact Number</label>
-                         <input name = "supplierContact" onChange = {() => {setSCONTACT(event.target.value);}} type="number" class="form-control" placeholder="Enter Contact"></input>
+                        
+                        <div  className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" htmlfor="scontact">Contact Number</label>
+                         <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierContact" onChange = {() => {setSCONTACT(event.target.value);}} type="number" class="form-control" placeholder="Enter Contact"></input>
                         </div>
                         <button type="submit" onClick={submitForm} className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>Submit</button>
                         </form>
