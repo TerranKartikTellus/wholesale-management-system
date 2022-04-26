@@ -160,3 +160,108 @@ function Table({msg,retailers}){
           } // will be passed to the page component as props
         }
       }
+  
+
+      function Tank({upd}){
+        console.log('qqqqqqq',upd);
+        return(
+          <div>
+            
+            {upd[0]}
+            {upd[1]}
+            {upd[2]}
+            {upd[3]}
+            {upd[4]}
+            {/* {upd[6]} */}
+          </div>
+        );
+      }
+      
+       function Form ({upd}){
+      
+              
+              console.log('sexxxx',upd[0]);
+      
+              const [rid , setRid] = useState(upd[1]);
+              const [rname , setRname] = useState(upd[2]);
+              const [raddress , setRaddress] = useState(upd[3]);
+              const [rcontact , setRcontact] = useState(upd[4]);
+              const [error , setError] = useState();
+              async function submitForm(e){
+                 e.preventDefault();
+              
+                      
+                      const response = await fetch(
+                              '/api/operations/retailer/updateRetailer',
+                              {
+                                      method: 'POST',
+                                      body: JSON.stringify(
+                                              {
+                                                      '_id': upd[0],
+                                                      'rid': rid,
+                                                      'rname': rname,
+                                                      'raddress': raddress,
+                                                      'rcontact': rcontact
+                                              }
+                                      ),
+                                      headers: {
+                                              'Content-Type': 'application/json'
+                                      }
+                              }
+                      );
+                      const jsonResponse = await response.json();
+                      console.log('json ressssppp',jsonResponse); 
+                      if(jsonResponse.worked){
+                              window.location.replace("/panel/retailer?newRetailer=Updated%20Retailer");
+                      }
+                      else {
+                              setError(['An Error has Occured','Please Retry'])
+                      }
+              }
+              return (
+                      <div>
+                        _id: {upd[0]}
+                              <form  >
+                                      {
+                                              error && 
+                                              <div className="flex flex-row justify-between items-start w-96 p-2 tracking-wider m-1 rounded-lg absolute right-0 top-0 bg-red-600 text-gray-200">
+                                                      {
+      
+                                                              <div >
+                                                                      <div className="text-xl">{error[0]}</div>
+                                                                      <div className="text-base">{error[1]}</div>
+                                                                      
+                                                              </div>
+                                                      }
+                                                      <div><button onClick={()=>{setError("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
+                                              </div>
+                                      }
+                                      <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                                      <div   className="w-1/2 bg-transparent" >RID: <span className="p-1 text-red-500 font-semibold">old value: {upd[1]}</span></div> 
+                                      <input defaultValue={upd[1]} className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" required type="number" name="uid"
+                                      onChange={()=>{setRid(event.target.value);}}
+                                      ></input><br></br>
+                                      </div>
+                                      <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                                      <div  className="w-1/2 bg-transparent" >Rname: <span className="p-1 text-red-500 font-semibold">old value: {upd[2]}</span></div> 
+                                      <input defaultValue={upd[2]} className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" required type="text" name="uname"
+                                      onChange={()=>{setRname(event.target.value);}}
+                                      ></input>
+                                      </div>
+                                      <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                                      <div  className="w-1/2 bg-transparent" >Raddress: <span className="p-1 text-red-500 font-semibold">old value: {upd[3]}</span></div>
+                                       <input defaultValue={upd[3]} className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" required 
+                                      onChange={()=>{setRaddress(event.target.value);}}
+                                      type="text" name="lname"></input>        
+                                      </div>
+                                      <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                                      <div  className="w-1/2 bg-transparent" >Rcontact: <span className="p-1 text-red-500 font-semibold">old value: {upd[4]}</span></div> 
+                                      <input defaultValue={upd[4]} className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" required
+                                       onChange={()=>{setRcontact(event.target.value);}}
+                                      type="text" name="position"></input>
+                                      </div>
+                                      <div><button onClick={submitForm}  name="Submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider">Update Supplier</button></div>
+                              </form>
+                      </div>
+              );
+      }
