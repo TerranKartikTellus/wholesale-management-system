@@ -31,7 +31,7 @@ export default function Panel({AllRetailers}) {
                               </div>
                               <div className="p-20 bg-gray-100 mt-10 mx-10 bg-opacity-30">
                                       <div className="text-2xl tracking-wider">Retailers</div>
-                                      <div className="mx-auto "><Table msg={router.query.AllRetailers} retailers={AllRetailers}></Table></div>
+                                      <div className="mx-auto "><Table msg={router.query.newRetailer} retailers={AllRetailers}></Table></div>
                               </div>
                     </div>
           </div>
@@ -49,7 +49,7 @@ function Table({msg,retailers}){
        
           if(confirm('Are you sure you want to delete this item ?')){
             const response = await fetch(
-                        '/api/operations/supplier/delRetailer',
+                        '/api/operations/retailer/delRetailer',
                         {
                                 method: 'POST',
                                 body: JSON.stringify(
@@ -65,7 +65,7 @@ function Table({msg,retailers}){
                 const jsonResponse = await response.json();
                 console.log(jsonResponse); 
                 if(jsonResponse.msg == 'Deletion Completed'){
-                        window.location.replace("/panel/retailer?newRetailer=Retailer%20Deleted");
+                        window.location.replace("/panel/retailers?newRetailer=Retailer%20Deleted");
                 }
                 else {
                         setError(['An Error has Occured','Please Retry']);
