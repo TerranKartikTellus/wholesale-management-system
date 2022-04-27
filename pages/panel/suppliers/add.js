@@ -63,7 +63,7 @@ function Form(){
                      const jsonResponse = await response.json();
                      console.log(jsonResponse); 
                      if(jsonResponse.msg == 'Insertion Completed'){
-                             window.location.replace("/panel/supplier?newSupplier=New%20Supplier%20Added");
+                             window.location.replace("/panel/suppliers?newSupplier=New%20Supplier%20Added");
                      }
                      else {
                              setError(['An Error has Occured','Please Retry'])

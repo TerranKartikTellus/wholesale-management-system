@@ -1,12 +1,10 @@
 
-import user from '/schema/supplier';
-
 import clientPromise from "/lib/mongodb";
 const { ObjectId } = require('mongodb');
 
 export default async function handler(req, res) {
    console.log(
-            req.body._id
+            'pppppppppppp',req.body._id
   );
   const id = req.body._id
  const client = await clientPromise;

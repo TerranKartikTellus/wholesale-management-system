@@ -10,8 +10,8 @@ export default function Panel({AllSuppliers}) {
 
         const msgNewSupplier =[ null , null ];
         const router = useRouter()
-        console.log(router.query.newSupplier);
-        console.log("-----------------------",AllSuppliers);
+        // console.log(router.query.newSupplier);
+        // console.log("-----------------------",AllSuppliers);
 
           return (
           <div className="flex flex-row h-screen items-start overflow-y-hidden">
@@ -32,10 +32,9 @@ export default function Panel({AllSuppliers}) {
                               <div className="p-20 bg-gray-100 mt-10 mx-10 bg-opacity-30">
                                       <div className="text-2xl tracking-wider">Suppliers</div>
 
-                                      <div className="mx-auto "><Table msg={router.query.newSupplier} suppliers={AllSuppliers}></Table></div>
+                                      <div className="mx-auto "><Table msg1={router.query.msg} suppliers={AllSuppliers}></Table></div>
 
-                                      <div className="mx-auto "><Table msg={router.query.AllSuppliers} suppliers={AllSuppliers}></Table></div>
-
+                                    
                               </div>
                     </div>
           </div>
@@ -43,17 +42,19 @@ export default function Panel({AllSuppliers}) {
 }
 
 
-function Table({msg,suppliers}){
-        const [newSupplier , setNewSupplier] = useState(msg);
+function Table({msg1,suppliers}){
+        const [msg , setmsg] = useState(msg1);
 
        console.log("--------------",suppliers);
 
         const [error , setError] = useState();
 
         const [id , setId] = useState();
-        async function Delete(){
+          const [upd, setupd] = useState();
+     
+ async function Delete(){
           //  e.preventDefault();
-          console.log(id);
+          console.log('--------------------',id);
        
           if(confirm('Are you sure you want to delete this item ?')){
             const response = await fetch(
@@ -73,7 +74,7 @@ function Table({msg,suppliers}){
                 const jsonResponse = await response.json();
                 console.log(jsonResponse); 
                 if(jsonResponse.msg == 'Deletion Completed'){
-                        window.location.replace("/panel/supplier?newSupplier=Supplier%20Deleted");
+                        window.location.replace("/panel/suppliers?msg=User%20Deleted");
                 }
                 else {
                         setError(['An Error has Occured','Please Retry']);
@@ -91,17 +92,17 @@ function Table({msg,suppliers}){
               ? 
               <div className="">
                 {
-                                              newSupplier && 
+                                              msg && 
                                               <div className="flex flex-row justify-between items-start w-96 p-2 tracking-wider m-1 rounded-lg absolute right-0 top-0 bg-green-600 text-gray-200">
                                                       {
       
                                                               <div >
-                                                                      <div className="text-xl">{newSupplier}</div>
+                                                                      <div className="text-xl">{msg}</div>
                                                                       
                                                                       
                                                               </div>
                                                       }
-                                                      <div><button onClick={()=>{setNewSupplier("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
+                                                      <div><button onClick={()=>{setmsg("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
                                               </div>
                 }
                 <div>
@@ -126,14 +127,23 @@ function Table({msg,suppliers}){
                     <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.scontact}</td>
       
                   
-                    <td className="text-center px-2 py-1 hover:scale-110   bg-opacity-90 hover:bg-sky-600 transition-all duration-300 ease-in-out" >
-                      <a href={`/panel/user/edit?id=${i._id}`}><img src="/edit.svg" className="w-7 h-7 mx-auto"></img></a>
-                    </td>
                     <td className="w-[100px] h-full" >
+                <button className="w-full h-full text-center px-2 py-1
+                  hover:scale-110   bg-opacity-90  hover:bg-blue-600
+                   transition-all duration-300 ease-in-out"
+                 onClick={
+                    ()=>{setupd([i._id,i.uid,i.uFname,i.uLname,i.positionId,i.adminPrivilige,i.sex]);}
+                 }
+                 >
+                   <img src="/edit.svg" className="w-7 h-7 mx-auto"></img>
+                </button>
+              </td>
+              
+              <td className="w-[100px] h-full" >
                 <button className="w-full h-full text-center px-2 py-1
                   hover:scale-110   bg-opacity-90  hover:bg-red-600
                    transition-all duration-300 ease-in-out"
-                 onClick={()=>{setId(i._id); Delete(i);}} 
+                 onClick={()=>{setId(i._id); Delete(i._id);}} 
                  onMouseEnter={()=>{setId(i._id); }} >
                    <img className="w-7 h-7 mx-auto" src="/delete.svg"></img>
                 </button>
@@ -159,7 +169,7 @@ function Table({msg,suppliers}){
           .sort({ metacritic: -1 })
           .limit(20)
           .toArray();
-        console.log(AllSuppliers);
+        // console.log(AllSuppliers);
         
         return {
           props: {
