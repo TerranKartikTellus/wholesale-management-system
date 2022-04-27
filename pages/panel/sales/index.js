@@ -93,8 +93,8 @@ const [showcart,setshowcart] = useState(false);
       }
       {
               showcart && 
-              <div className="relative top-0 left-0 ">
-                      <table className="absolute w-[700px] scale-90 text-center -top-52 -translate-y-52 left-14  p-5">
+              <div className="relative top-0 left-0  border-2 border-gray-900">
+                      <table className="absolute w-[700px]  bg-gray-100  rounded  scale-90 text-center -top-52 -translate-y-52 left-14  p-5">
                       <div className="bg-gray-100 bg-opacity-90 w-full">Order Cart details</div>
                           <tr className="w-full mt-1 bg-gray-100 bg-opacity-80">
                             <th className="w-[10px] ">sno</th>
@@ -140,7 +140,7 @@ const [showcart,setshowcart] = useState(false);
                       <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Order ID</th>
                       <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Retailer ID</th>
                 
-                      <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Contact</th>
+                      <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Time</th>
                       <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Cost</th>
                       <th className=" text-center px-2 py-1 bg-gray-700 text-gray-100">Payment Mode</th>
                       
