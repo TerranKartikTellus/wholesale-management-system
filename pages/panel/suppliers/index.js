@@ -88,6 +88,19 @@ function Table({msg1,suppliers}){
         return(
           <div className="mx-auto flex flex-row items-center justify-center mt-5">
             {
+        upd && 
+          <div className="p-14 absolute top-32 left-auto right-auto z-50 w-9/12 bg-gray-100 bg-opacity-95 scale-90 hover:scale-95 shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out ">
+            <div className="flex flex-row justify-between items-center text-5xl font-semibold">
+              <div>UPDATE</div>
+              <div><button onClick={()=>setupd()} ><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg></button></div>  
+            </div>  
+
+            <div className="py-20">
+              <Form upd={upd} ></Form>
+            </div>
+          </div>   
+      }
+            {
               suppliers 
               ? 
               <div className="">
@@ -132,7 +145,7 @@ function Table({msg1,suppliers}){
                   hover:scale-110   bg-opacity-90  hover:bg-blue-600
                    transition-all duration-300 ease-in-out"
                  onClick={
-                    ()=>{setupd([i._id,i.uid,i.uFname,i.uLname,i.positionId,i.adminPrivilige,i.sex]);}
+                    ()=>{setupd([i._id,i.sid,i.sname,i.saddress,i.scontact]);}
                  }
                  >
                    <img src="/edit.svg" className="w-7 h-7 mx-auto"></img>
@@ -177,3 +190,101 @@ function Table({msg1,suppliers}){
           } // will be passed to the page component as props
         }
       }
+
+
+
+function Form({upd}){
+
+        const [sid, setSID] = useState(upd[1]);
+        const [sname, setSNAME] = useState(upd[2]);
+        const [saddress, setSADDRESS] = useState(upd[3]);
+        const [scontact, setSCONTACT] = useState(upd[4]);
+        const [error , setError] = useState();
+
+        async function submitForm(e){
+                e.preventDefault();
+             console.log("sdad");
+                     
+                     const response = await fetch(
+                             '/api/operations/supplier/updateSupplier',
+                             {
+                                     method: 'POST',
+                                     body: JSON.stringify(
+                                             {
+                                                '_id':upd[0],
+                                                     'sid': sid,
+                                                     'sname': sname,
+                                                     'saddress': saddress,
+                                                     'scontact': scontact
+                                             }
+                                     ),
+                                     headers: {
+                                             'Content-Type': 'application/json'
+                                     }
+                             }
+                     );
+                     const jsonResponse = await response.json();
+                     console.log(jsonResponse); 
+                     if(jsonResponse.worked){
+                             window.location.replace("/panel/suppliers?msg=Supplier%20Updated");
+                     }
+                     else {
+                             setError(['An Error has Occured','Please Retry'])
+                     }
+             }
+
+        return(
+                <div>
+                  _id:{
+                    upd[0]
+                  }
+                        <form>
+                        {
+                                        error && 
+                                        <div className="flex flex-row justify-between items-start w-96 p-2 tracking-wider m-1 rounded-lg absolute right-0 top-0 bg-red-600 text-gray-200">
+                                                {
+
+                                                        <div >
+                                                                <div className="text-xl">{error[0]}</div>
+                                                                <div className="text-base">{error[1]}</div>
+                                                                
+                                                        </div>
+                                                }
+                                                <div><button onClick={()=>{setError("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
+                                        </div>
+                        }
+
+
+                        <div  className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" htmlfor="sid">Supplier ID <span className="p-1 text-red-500 font-semibold">old value: {upd[1]}</span></label>
+                         <input defaultValue={upd[1]} required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierID" 
+                        onChange = {() => {
+                                setSID(event.target.value); 
+                                console.log(event.target.value)}
+                                } 
+                                type="number"  aria-describedby="emailHelp" placeholder="Enter ID"></input>
+                        </div>
+
+                        <br></br>
+                        
+                        <div  className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" >Supplier Name <span className="p-1 text-red-500 font-semibold">old value: {upd[2]}</span></label>
+                         <input defaultValue={upd[2]} required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierName" onChange = {() => {setSNAME(event.target.value);}} type="string"  placeholder="Enter Name"></input>
+                        </div>
+                        <br></br>
+                        
+                        <div  className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent " >Supplier Address  <span className="p-1 text-red-500 font-semibold">old value: {upd[3]}</span></label>
+                         <input defaultValue={upd[3]}  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierAddress" onChange = {() => {setSADDRESS(event.target.value);}} type="string"   placeholder="Enter Address"></input>
+                        </div>
+                        <br></br>
+                        
+                        <div  className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" >Contact Number  <span className="p-1 text-red-500 font-semibold">old value: {upd[4]}</span></label>
+                         <input defaultValue={upd[4]} required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierContact" onChange = {() => {setSCONTACT(event.target.value);}} type="number"  placeholder="Enter Contact"></input>
+                        </div>
+                        <button type="submit" onClick={submitForm} className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>Submit</button>
+                        </form>
+                </div>
+        );
+}

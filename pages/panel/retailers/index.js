@@ -43,6 +43,7 @@ function Table({msg,retailers}){
         const [error , setError] = useState();
 
         const [id , setId] = useState();
+        const [upd, setupd] = useState();
         async function Delete(){
           //  e.preventDefault();
           console.log(id);
@@ -79,6 +80,21 @@ function Table({msg,retailers}){
 
         return(
           <div className="mx-auto flex flex-row items-center justify-center mt-5">
+            
+            {
+        upd && 
+          <div className="p-14 absolute top-32 left-auto right-auto z-50 w-9/12 bg-gray-100 bg-opacity-95 scale-90 hover:scale-95 shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out ">
+            <div className="flex flex-row justify-between items-center text-5xl font-semibold">
+              <div>UPDATE</div>
+              <div><button onClick={()=>setupd()} ><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg></button></div>  
+            </div>  
+
+            <div className="py-20">
+              <Form upd={upd} ></Form>
+            </div>
+          </div>   
+      }
+            
             {
               retailers
               ? 
@@ -119,9 +135,17 @@ function Table({msg,retailers}){
                     <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.rcontact}</td>
       
                   
-                    <td className="text-center px-2 py-1 hover:scale-110   bg-opacity-90 hover:bg-sky-600 transition-all duration-300 ease-in-out" >
-                      <a href={`/panel/user/edit?id=${i._id}`}><img src="/edit.svg" className="w-7 h-7 mx-auto"></img></a>
-                    </td>
+                  <td className="w-[100px] h-full" >
+                <button className="w-full h-full text-center px-2 py-1
+                  hover:scale-110   bg-opacity-90  hover:bg-blue-600
+                   transition-all duration-300 ease-in-out"
+                 onClick={
+                    ()=>{setupd([i._id,i.rid,i.rname,i.raddress,i.rcontact]);}
+                 }
+                 >
+                   <img src="/edit.svg" className="w-7 h-7 mx-auto"></img>
+                </button>
+              </td>
                     <td className="w-[100px] h-full" >
                 <button className="w-full h-full text-center px-2 py-1
                   hover:scale-110   bg-opacity-90  hover:bg-red-600
@@ -160,3 +184,105 @@ function Table({msg,retailers}){
           } // will be passed to the page component as props
         }
       }
+
+
+      
+function Form({upd}){
+        
+        const [retailerId              , setRID]         = useState(upd[1]);         
+        const [retailerName            , setRNAME]       = useState(upd[2]); 
+        const [retailerAddress         , setRADDRESS]    = useState(upd[3]); 
+        const [retailerContactnumber   , setRCONTACT]    = useState(upd[4]); 
+        const [error , setError] = useState();
+
+        async function submitForm(e){
+                e.preventDefault();
+             console.log("sdad");
+                     
+                     const response = await fetch(
+                             '/api/operations/retailer/updateRetailer',
+                             {
+                                     method: 'POST',
+                                     body: JSON.stringify(
+                                             {
+                                               '_id':upd[0],
+                                                     'rid': retailerId,
+                                                     'rname': retailerName,
+                                                     'raddress': retailerAddress,
+                                                     'rcontact': retailerContactnumber
+                                             }
+                                     ),
+                                     headers: {
+                                             'Content-Type': 'application/json'
+                                     }
+                             }
+                     );
+                     const jsonResponse = await response.json();
+                     console.log(jsonResponse); 
+                     if(jsonResponse.worked){
+                             window.location.replace("/panel/retailers?newRetailer=Retailer%20Updated");
+                     }
+                     else {
+                             setError(['An Error has Occured','Please Retry'])
+                     }
+             }
+
+
+        return(
+                <div>
+                  _id:{upd[0]}
+                        <form >
+
+                        {
+                                        error && 
+                                        <div className="flex flex-row justify-between items-start w-96 p-2 tracking-wider m-1 rounded-lg absolute right-0 top-0 bg-red-600 text-gray-200">
+                                                {
+
+                                                        <div >
+                                                                <div className="text-xl">{error[0]}</div>
+                                                                <div className="text-base">{error[1]}</div>
+                                                                
+                                                        </div>
+                                                }
+                                                <div><button onClick={()=>{setError("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
+                                        </div>
+                        }
+
+
+                        <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" for="rid">Retailer Id <span className="p-1 text-red-500 font-semibold">old value: {upd[1]}</span></label>
+                        <input required defaultValue={upd[1]}  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
+                         name="retailerId" onChange={()=>{setRID(event.target.value);}}
+                        type="number"  id="123"  placeholder="Enter Id"></input>
+                        </div>
+
+                        <br></br>
+                        <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" for="rname">Product Name <span className="p-1 text-red-500 font-semibold">old value: {upd[2]}</span></label>
+                        <input defaultValue={upd[2]} required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
+                         name="retailerName" onChange={()=>{setRNAME(event.target.value);}}
+                        type="string"  id="name"  placeholder="Enter Name"></input>
+                        </div>
+                        <br></br>
+
+                        <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" for="raddress">Retailer address <span className="p-1 text-red-500 font-semibold">old value: {upd[3]}</span></label>
+                        <input defaultValue={upd[3]} required className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" onChange={()=>{setRADDRESS(event.target.value);}}
+                          name="retaileraddress"
+                         type="string"  id="address" placeholder="Enter Address"></input>
+                        </div>
+                        <br></br>
+
+                        <div className=" flex flex-row text-xl capitalize justify-start items-center">
+                        <label className="w-1/2 bg-transparent" for="rcontact">Retailer Contact <span className="p-1 text-red-500 font-semibold">old value: {upd[4]}</span></label>
+                        <input defaultValue={upd[4]} required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" onChange={()=>{setRCONTACT(event.target.value);}}
+                         name="retailerContactnumber"
+                         type="number"  id="123" placeholder="Enter Contact number"></input>
+                        </div>
+                        <button onClick={submitForm} type="submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>
+                                Submit
+                        </button>
+                        </form>
+                </div>
+        );
+}

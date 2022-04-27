@@ -82,7 +82,7 @@ const [cart,setCart] = useState([]);
                                 setSID(event.target.value); 
                                 console.log(event.target.value)}
                                 } 
-                                type="number"  placeholder="ORDER ID"></input>
+                                type="number"  placeholder="Order ID"></input>
                         </div>
 
                         <div  className=" flex flex-row text-xl capitalize justify-start items-center">
@@ -92,7 +92,7 @@ const [cart,setCart] = useState([]);
                                 setSID(event.target.value); 
                                 console.log(event.target.value)}
                                 } 
-                                type="number"  placeholder="ORDER ID"></input>
+                                type="number"  placeholder="Retailer ID"></input>
                         </div>
 
                         <div  className=" flex flex-row text-xl capitalize justify-start items-center">
@@ -102,7 +102,7 @@ const [cart,setCart] = useState([]);
                                 setSID(event.target.value); 
                                 console.log(event.target.value)}
                                 } 
-                                type="date"  placeholder="ORDER ID"></input>
+                                type="date"  placeholder="22-04-2001"></input>
                         </div>
 
 
@@ -113,7 +113,7 @@ const [cart,setCart] = useState([]);
                                 setSID(event.target.value); 
                                 console.log(event.target.value)}
                                 } 
-                                type="number"  placeholder="ORDER ID"></input>
+                                type="number"  placeholder="$232342"></input>
                         </div>
 
                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
@@ -151,7 +151,7 @@ const [cart,setCart] = useState([]);
                            </select>
                          </div>
 
-                         <div>
+                         <div className="text-xl mt-5 border-t-2 border-gray-900">
                                  <div>Cart</div>
                                  <div>
                                          <table>
