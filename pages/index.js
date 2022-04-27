@@ -10,36 +10,7 @@ const [uid ,setuid]=useState();
 const [pass,setpass]=useState();
 
 // const [msg,setMsg]=useState(router.query.msg);
-console.log('new');
-async function submit(){
-  console.log('submit');
- const response = await fetch(
-                        '/api/operations/user/validateUser',
-                        {
-                                method: 'POST',
-                                body: JSON.stringify(
-                                        {
-                                                'id': uid,
-                                                'pass': pass,
-                                               
-                                        }
-                                ),
-                                headers: {
-                                        'Content-Type': 'application/json'
-                                }
-                        }
-                );
-                const jsonResponse = await response.json();
-                console.log('10101001',jsonResponse); 
-                if(jsonResponse.msg=='Login'){
-                  console.log('lllllllllllllllllllllllllllllllllll');
-                        window.location.replace("/panel");
-                }
-                else {
-                  window.location.replace("/");
-                        setError(['An Error has Occured','Please Retry'])
-                }
-}
+
 
   return (
    <div className="bg-gray-900 flex flex-row justify-between items-center m-0 p-0 h-screen text-gray-50">
@@ -74,9 +45,9 @@ async function submit(){
            </a>
             */}
 
-            <input onClick={submit}  type="submit" className="w-14 mt-10 mx-auto h-14 flex flex-col items-center justify-center bg-slate-300  text-black rounded-full shadow-md hover:shadow-gray-100/50">
-           </input>
-             {/* <img src="/arrow.svg" className="h-8 w-8"></img> */}
+            <a href='/panel'  type="submit" className="w-14 mt-10 mx-auto h-14 flex flex-col items-center justify-center bg-slate-300  text-black rounded-full shadow-md hover:shadow-gray-100/50">
+             <img src="/arrow.svg" className="h-8 w-8"></img>
+           </a>
            
          </form>
 
