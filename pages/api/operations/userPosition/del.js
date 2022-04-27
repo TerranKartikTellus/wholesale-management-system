@@ -1,12 +1,14 @@
 
+import user from '/schema/user';
+
 import clientPromise from "/lib/mongodb";
 const { ObjectId } = require('mongodb');
 
 export default async function handler(req, res) {
    console.log(
-            'pppppppppppp',req.body._id
+            'pid--------------------',req.body._id
   );
-  const id = req.body._id
+  const id = req.body._id;
  const client = await clientPromise;
  const db = client.db("wholesale");
   if(!req.body){
@@ -26,8 +28,9 @@ export default async function handler(req, res) {
 }
 
 async function Delete(db,id){
-        const rowId =  ObjectId(id);
-  const  u =  await db.collection("productCategory").deleteOne({ "_id": rowId });
+
+  const rowId =  ObjectId(id);
+  const  u =  await db.collection("userPosition").deleteOne({ "_id": rowId });
   console.log("Message from mongodb after performing deleteop",u);
   return u.deletedCount ;
 }

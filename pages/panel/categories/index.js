@@ -11,8 +11,8 @@ export default function Panel({Allcategories}) {
 // const msgNewSupplier =[ null , null ];
 // const msgNewRetailer =[ null , null ];
 const router = useRouter()
-  console.log(router.query.newcategory);
-console.log("----",Allcategories);
+  // console.log(router.query.newcategory);
+// console.log("----",Allcategories);
 return (
           <div className="flex flex-row h-screen items-start overflow-y-hidden">
                      <Head>
@@ -31,34 +31,75 @@ return (
                               </div>
                               <div className="mt-8 m-3 p-8 mx-auto">
                                 <div className="mx-auto text-5xl font-mono font-bold">All categories</div>
-                                <div className="mx-auto "><Table msg={router.query.msg} categories={Allcategories}></Table></div>
+                                <div className="mx-auto "><Table msg1={router.query.msg} categories={Allcategories}></Table></div>
                               </div>
                     </div>
                     
           </div>
 );
 }
- function Table({msg,categories}){
-  const [newcategory , setNewcategory] = useState(msg);
- console.log(categories);
+ function Table({msg1,categories}){
+  const [msg , setmsg] = useState(msg1);
+    const [error , setError] = useState();
+
+  const [id , setId] = useState();
+
+  const [upd, setupd] = useState();
+
+//  console.log(categories);
+
+
+ async function Delete(){
+          //  e.preventDefault();
+          console.log('--------------------',id);
+       
+          if(confirm('Are you sure you want to delete this item ?')){
+            const response = await fetch(
+                        '/api/operations/category/delcategory',
+                        {
+                                method: 'POST',
+                                body: JSON.stringify(
+                                        {
+                                                '_id': id
+                                        }
+                                ),
+                                headers: {
+                                        'Content-Type': 'application/json'
+                                }
+                        }
+                );
+                const jsonResponse = await response.json();
+                console.log(jsonResponse); 
+                if(jsonResponse.msg == 'Deletion Completed'){
+                        window.location.replace("/panel/categories?msg=User%20Deleted");
+                }
+                else {
+                        setError(['An Error has Occured','Please Retry']);
+                        console.log("qw->",error);
+                }
+          }
+                
+                
+        }
+
   return(
     <div className="mx-auto flex flex-row items-center justify-center mt-5">
       {
-        categories 
+        categories
         ? 
         <div className="">
           {
-                                        newcategory && 
+                                        msg && 
                                         <div className="flex flex-row justify-between items-start w-96 p-2 tracking-wider m-1 rounded-lg absolute right-0 top-0 bg-green-600 text-gray-200">
                                                 {
 
                                                         <div >
-                                                                <div className="text-xl">{newcategory}</div>
+                                                                <div className="text-xl">{msg}</div>
                                                                 
                                                                 
                                                         </div>
                                                 }
-                                                <div><button onClick={()=>{setNewcategory("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
+                                                <div><button onClick={()=>{setmsg("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
                                         </div>
           }
           <div>
@@ -76,14 +117,37 @@ return (
             <tr key={i.pCategoryId}  className="border-b-2 border-gray-800 tracking-wider bg-gray-700 bg-opacity-30 hover:bg-opacity-50">
               <td className="text-lg border-r-2  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{x+1}</td>
               <td className="text-lg border-r-2  text-center px-2 py-1 bg-opacity-90 font-extrabold" >{i.pCategoryId}</td>
-              <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.pcategory}</td>
+              <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.pCategory}</td>
 
             
-              <td className="text-center px-2 py-1 hover:scale-110   bg-opacity-90 hover:bg-sky-600 transition-all duration-300 ease-in-out" >
+              {/* <td className="text-center px-2 py-1 hover:scale-110   bg-opacity-90 hover:bg-sky-600 transition-all duration-300 ease-in-out" >
                 <a href={`/panel/user/edit?id=${i._id}`}><img src="/edit.svg" className="w-7 h-7 mx-auto"></img></a>
               </td>
               <td className="text-center px-2 py-1  hover:scale-110   bg-opacity-90  hover:bg-red-600 transition-all duration-300 ease-in-out" >
                 <a href={`/panel/user/delete?id=${i._id}`}><img className="w-7 h-7 mx-auto" src="/delete.svg"></img></a>
+              </td>
+             */}
+              
+              <td className="w-[100px] h-full" >
+                <button className="w-full h-full text-center px-2 py-1
+                  hover:scale-110   bg-opacity-90  hover:bg-blue-600
+                   transition-all duration-300 ease-in-out"
+                 onClick={
+                    ()=>{setupd([i._id,i.uid,i.uFname,i.uLname,i.positionId,i.adminPrivilige,i.sex]);}
+                 }
+                 >
+                   <img src="/edit.svg" className="w-7 h-7 mx-auto"></img>
+                </button>
+              </td>
+              
+              <td className="w-[100px] h-full" >
+                <button className="w-full h-full text-center px-2 py-1
+                  hover:scale-110   bg-opacity-90  hover:bg-red-600
+                   transition-all duration-300 ease-in-out"
+                 onClick={()=>{setId(i._id); Delete(i);}} 
+                 onMouseEnter={()=>{setId(i._id); }} >
+                   <img className="w-7 h-7 mx-auto" src="/delete.svg"></img>
+                </button>
               </td>
             
             </tr>
@@ -106,7 +170,7 @@ export async function getServerSideProps(context) {
     .sort({ metacritic: -1 })
     .limit(20)
     .toArray();
-  console.log(Allcategories);
+  // console.log(Allcategories);
   
   return {
     props: {

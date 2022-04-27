@@ -11,7 +11,7 @@ export default function Panel({AllUsers}) {
 // const msgNewCategory =[ null , null ];
 // const msgNewSupplier =[ null , null ];
 // const msgNewRetailer =[ null , null ];
-const router = useRouter()
+const router = useRouter();
   console.log(router.query.newUser);
 console.log(AllUsers);
 return (
@@ -80,7 +80,7 @@ return (
                 
                 
         }
-        console.log('---',upd);
+        
   return(
     <div className="mx-auto flex flex-row items-center justify-center mt-5">
       {

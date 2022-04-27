@@ -2,8 +2,9 @@ import SidePanel from "/components/sidepanel";
 import Head from 'next/head'
 import React ,{useState} from "react"
 
+import clientPromise from "/lib/mongodb";
 
-export default function Panel() {
+export default function Panel({position}) {
 
 
           return (
@@ -24,14 +25,14 @@ export default function Panel() {
                               </div>
                               <div className="p-20 bg-gray-100 mt-10 mx-10 bg-opacity-30">
                                       <div className="text-2xl tracking-wider">Add New Users</div>
-                                      <div className="tracking-wider"><Form></Form></div>
+                                      <div className="tracking-wider"><Form position1={position}></Form></div>
                               </div>
                               
                     </div>
           </div>
 );
 }
-function Form (){
+function Form ({position1}){
         const [uid , setUid] = useState(0);
         const [uname , setUname] = useState("");
         const [lname , setLname] = useState("");
@@ -106,12 +107,21 @@ function Form (){
                                 onChange={()=>{setLname(event.target.value);}}
                                 type="text" name="lname"></input>        
                                 </div>
+
+
                                 <div className=" flex flex-row text-xl capitalize justify-start items-center">
-                                <div  className="w-1/2 bg-transparent" >Position:</div> 
-                                <input className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" required
-                                 onChange={()=>{setPosition(event.target.value);}}
-                                type="text" name="position"></input>
-                                </div>
+                                  <div  className="w-1/2 bg-transparent" > User Position Id:</div>
+                                   <select onChangeCapture={()=>{setPosition(event.target.value);}} id="cars" name="cars" className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900">
+                                
+                                    {
+                                            position1.map(i=>(
+                                                    <option onClick={()=>{setPosition(event.target.value);}} key={i.pid} value={i.pid}>{i.pname}|{i.pid}</option>
+                                            ))
+                                    }
+                                   </select>
+                                 </div>
+
+
                                 <div  className="text-xl">
                                         <label for="admin">Admin Privilege:</label>
 
@@ -126,4 +136,24 @@ function Form (){
                         </form>
                 </div>
         );
+}
+
+
+export async function getServerSideProps(context) {
+ 
+   const client = await clientPromise;
+ const db = client.db("wholesale");
+  const position = await db
+    .collection("userPosition")
+    .find({})
+    .sort({ metacritic: -1 })
+    .limit(20)
+    .toArray();
+ 
+  
+  return {
+    props: {
+      position: JSON.parse(JSON.stringify(position)),
+    } // will be passed to the page component as props
+  }
 }

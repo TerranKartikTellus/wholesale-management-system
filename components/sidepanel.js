@@ -13,8 +13,10 @@ export default function SidePanel(){
                               <div className="mt-10 ">
                                         <a href="/panel/user/add" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Add new Users</a><br/>
                               <a href="/panel/user" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Manage Users</a><br/>
+                              <a href="/panel/userPosition/add" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Add User Position </a><br/>
+                              
                               <a href="/panel/userPosition" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Manage User Position </a><br/>
-                              <a href="/" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold ">Apply for Leave</a><br/>
+                              
                               <div className="mt-10"><a href="/" className=" bg-gray-900 text-gray-100 hover:text-gray-900 hover:bg-gray-100 shadow-md hover:shadow-xl transition-all duration-300  ease-in-out p-3 text-center rounded-sm translate-y-4">Sign Out</a> </div>
                               </div>
 
