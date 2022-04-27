@@ -1,9 +1,8 @@
-import user from '/schema/productCategory';
 
 import clientPromise from "/lib/mongodb";
 
 export default async function handler(req, res) {
-   console.log(
+  console.log(
             '322222222222222222222222',req.body
   );
  const client = await clientPromise;

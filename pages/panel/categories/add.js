@@ -38,35 +38,34 @@ function Form(){
   const [error , setError] = useState();
         
         
-        async function submitForm(e){
-         e.preventDefault();
-         
+       async function submitForm(e){
+           e.preventDefault();
+        console.log('--------------------------',pCategoryId,'---------',pCategory);
                 
-         const response = await fetch(
-                 '/api/operations/category/addcategory',
-                 {
-                         method: 'POST',
-                         body: JSON.stringify(
-                                 {
-                                         
-                                         'pCategoryId': pCategoryId,
-                                         'pCategory'  : pCategory
-                                 }
-                                 ),
+                const response = await fetch(
+                        '/api/operations/category/addcategory',
+                        {
+                                method: 'POST',
+                                body: JSON.stringify(
+                                        {
+                                                'pCategoryId':pCategoryId,
+                                                'pCategory':pCategory
+                                        }
+                                ),
                                 headers: {
                                         'Content-Type': 'application/json'
                                 }
                         }
                 );
-         const jsonResponse = await response.json();
-         console.log(jsonResponse); 
-         if(jsonResponse.msg == 'Insertion Completed'){
-                 window.location.replace("http://localhost:3000/panel/categories?msg=Item%20Added");
-         }
-         else {
-                 setError(['An Error has Occured','Please Retry'])
-         }
- }
+                const jsonResponse = await response.json();
+                console.log(jsonResponse); 
+                if(jsonResponse.msg == 'Insertion Completed'){
+                        window.location.replace("/panel/categories?newUser=New%20User%20Added");
+                }
+                else {
+                        setError(['An Error has Occured','Please Retry'])
+                }
+        }
  return (
          <div>
                  <form  >
