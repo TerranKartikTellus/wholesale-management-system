@@ -5,7 +5,7 @@ const { ObjectId } = require('mongodb');
 
 export default async function handler(req, res) {
    console.log(
-            req.body._id
+            '--------------------',req.body._id
   );
   const id = req.body._id
  const client = await clientPromise;
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
 
 async function Delete(db,id){
         const rowId =  ObjectId(id);
-  const  u =  await db.collection("user").deleteOne({ "_id": rowId });
+  const  u =  await db.collection("product").deleteOne({ "_id": rowId });
   console.log("Message from mongodb after performing deleteop",u);
   return u.deletedCount ;
 }

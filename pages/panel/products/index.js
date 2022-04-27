@@ -12,8 +12,8 @@ const msgNewProduct = [ null , null ];
 // const msgNewSupplier =[ null , null ];
 // const msgNewRetailer =[ null , null ];
 const router = useRouter()
-  console.log(router.query.newproduct);
-console.log(Allproducts);
+  // console.log(router.query.newproduct);
+// console.log(Allproducts);
 return (
           <div className="flex flex-row h-screen items-start overflow-y-hidden">
                      <Head>
@@ -46,11 +46,11 @@ return (
   const [id , setId] = useState();
    async function Delete(){
           //  e.preventDefault();
-          console.log(id);
+          console.log('-----------',id);
        
           if(confirm('Are you sure you want to delete this item ?')){
             const response = await fetch(
-                        '/api/operations/user/delUser',
+                        '/api/operations/products/delproduct',
                         {
                                 method: 'POST',
                                 body: JSON.stringify(
@@ -66,7 +66,7 @@ return (
                 const jsonResponse = await response.json();
                 console.log(jsonResponse); 
                 if(jsonResponse.msg == 'Deletion Completed'){
-                        window.location.replace("/panel/user?newUser=User%20Deleted");
+                        window.location.replace("/panel/products?newUser=User%20Deleted");
                 }
                 else {
                         setError(['An Error has Occured','Please Retry']);
@@ -127,8 +127,16 @@ return (
               <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.quantity}</td>
               <td className="text-lg border-r-2 text-center px-2 py-1  bg-opacity-90" >{i.pCategoryId}</td>
             
-              <td className="text-center px-2 py-1 hover:scale-110   bg-opacity-90 hover:bg-sky-600 transition-all duration-300 ease-in-out" >
-                <button href={`/panel/user/edit?id=${i._id}`}><img src="/edit.svg" className="w-7 h-7 mx-auto"></img></button>
+             <td className="w-[100px] h-full" >
+                <button className="w-full h-full text-center px-2 py-1
+                  hover:scale-110   bg-opacity-90  hover:bg-blue-600
+                   transition-all duration-300 ease-in-out"
+                 onClick={
+                    ()=>{setupd([i._id,i.uid,i.uFname,i.uLname,i.positionId,i.adminPrivilige,i.sex]);}
+                 }
+                 >
+                   <img src="/edit.svg" className="w-7 h-7 mx-auto"></img>
+                </button>
               </td>
               <td className="w-[100px] h-full" >
                 <button className="w-full h-full text-center px-2 py-1
@@ -160,7 +168,7 @@ export async function getServerSideProps(context) {
     .sort({ metacritic: -1 })
     .limit(20)
     .toArray();
-  console.log(Allproducts);
+  // console.log(Allproducts);
   
   return {
     props: {
