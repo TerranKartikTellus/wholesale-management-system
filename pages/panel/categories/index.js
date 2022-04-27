@@ -85,6 +85,19 @@ return (
   return(
     <div className="mx-auto flex flex-row items-center justify-center mt-5">
       {
+        upd && 
+          <div className="p-14 absolute top-32 left-auto right-auto z-50 w-9/12 bg-gray-100 bg-opacity-95 scale-90 hover:scale-95 shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out ">
+            <div className="flex flex-row justify-between items-center text-5xl font-semibold">
+              <div>UPDATE</div>
+              <div><button onClick={()=>setupd()} ><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg></button></div>  
+            </div>  
+
+            <div className="py-20">
+              <Form upd={upd} ></Form>
+            </div>
+          </div>   
+      }
+      {
         categories
         ? 
         <div className="">
@@ -133,7 +146,7 @@ return (
                   hover:scale-110   bg-opacity-90  hover:bg-blue-600
                    transition-all duration-300 ease-in-out"
                  onClick={
-                    ()=>{setupd([i._id,i.uid,i.uFname,i.uLname,i.positionId,i.adminPrivilige,i.sex]);}
+                    ()=>{setupd([i._id,i.pCategoryId,i.pCategory]);}
                  }
                  >
                    <img src="/edit.svg" className="w-7 h-7 mx-auto"></img>
@@ -177,4 +190,78 @@ export async function getServerSideProps(context) {
       Allcategories: JSON.parse(JSON.stringify(Allcategories)),
     } // will be passed to the page component as props
   }
+}
+
+
+function Form({upd}){
+        
+        const [pCategoryId   , setPCATEGORYID]       = useState(upd[1]);         
+        const [pCategory     , setPCATEGORY]         = useState(upd[2]); 
+  const [error , setError] = useState();
+        
+        
+       async function submitForm(e){
+           e.preventDefault();
+        console.log('--------------------------',pCategoryId,'---------',pCategory);
+                
+                const response = await fetch(
+                        '/api/operations/category/updatecategory',
+                        {
+                                method: 'POST',
+                                body: JSON.stringify(
+                                        {  '_id': upd[0],
+                                                'pCategoryId':pCategoryId,
+                                                'pCategory':pCategory
+                                        }
+                                ),
+                                headers: {
+                                        'Content-Type': 'application/json'
+                                }
+                        }
+                );
+                const jsonResponse = await response.json();
+                console.log(jsonResponse); 
+                if(jsonResponse.worked){
+                        window.location.replace("/panel/categories?msg=Item%20Updated");
+                }
+                else {
+                        setError(['An Error has Occured','Please Retry'])
+                }
+        }
+ return (
+         <div>
+                 <form  >
+                         {
+                                 error && 
+                                 <div className="flex flex-row justify-between items-start w-96 p-2 tracking-wider m-1 rounded-lg absolute right-0 top-0 bg-red-600 text-gray-200">
+                                         {
+
+                                                 <div >
+                                                         <div className="text-xl">{error[0]}</div>
+                                                         <div className="text-base">{error[1]}</div>
+                                                         
+                                                 </div>
+                                         }
+                                         <div><button onClick={()=>{setError("")}} className=" text-2xl bg-gray-900 p-2 ml-3 rounded-md">X</button></div>        
+                                 </div>
+                         }
+                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
+           
+                         <div className="w-1/2 bg-transparent">Product Category: <span className="p-1 text-red-500 font-semibold">old value: {upd[2]}</span></div>
+                          <input defaultValue={upd[2]} required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" type="text" name="pcategory"
+                         onChange={()=>{setPCATEGORY(event.target.value);}}
+                         ></input>
+                         </div>    
+                         <div className=" flex flex-row text-xl capitalize justify-start items-center"> 
+                         <div className="w-1/2 bg-transparent">Product Category Id: <span className="p-1 text-red-500 font-semibold">old value: {upd[1]}</span></div>
+                         <input defaultValue={upd[1]} required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
+                         onChange={()=>{setPCATEGORYID(event.target.value);}}
+                         type="number" name=""></input>        
+                         </div>
+
+                         
+                         <div><button onClick={submitForm}  name="Submit" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider">Update Product</button></div>
+                 </form>
+         </div>
+ );
 }
