@@ -1,7 +1,9 @@
 
 ## Wholesale Management System
-### Wholesale management involves the running of a business that sells goods wholesale – that is, in bulk at a lower price than retail
 Next.js | MongoDB
+### Wholesale management involves the running of a business that sells goods wholesale – that is, in bulk at a lower price than retail
+
+[Production: WholesaleManagementSystem.vercel.app](https://wholesalemanagementsys.vercel.app/panel)
 
 ##### It acts as middleman between the producers and consumers. Managing the details regarding the whole-sale system using pen and paper mode is an insurmountable task with a huge waste of time and resources. Hence the need for automation. A sophisticated and well-managed system will require the database system to conveniently store and retrieve data of the day-to-day operation with ease.
 
