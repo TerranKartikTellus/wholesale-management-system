@@ -99,26 +99,26 @@ function Form(){
                                 setSID(event.target.value); 
                                 console.log(event.target.value)}
                                 } 
-                                type="number" className="form-control" aria-describedby="emailHelp" placeholder="Enter ID"></input>
+                                type="number" aria-describedby="emailHelp" placeholder="Enter ID"></input>
                         </div>
 
                         <br></br>
                         
                         <div  className=" flex flex-row text-xl capitalize justify-start items-center">
                         <label className="w-1/2 bg-transparent" htmlhtmlFor="sname">Supplier Name</label>
-                         <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierName" onChange = {() => {setSNAME(event.target.value);}} type="string" className="form-control" placeholder="Enter Name"></input>
+                         <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierName" onChange = {() => {setSNAME(event.target.value);}} type="string"  placeholder="Enter Name"></input>
                         </div>
                         <br></br>
                         
                         <div  className=" flex flex-row text-xl capitalize justify-start items-center">
                         <label className="w-1/2 bg-transparent" htmlhtmlFor="saddress">Supplier Address</label>
-                         <input  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierAddress" onChange = {() => {setSADDRESS(event.target.value);}} type="string" className="form-control"  placeholder="Enter Address"></input>
+                         <input  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierAddress" onChange = {() => {setSADDRESS(event.target.value);}} type="string"   placeholder="Enter Address"></input>
                         </div>
                         <br></br>
                         
                         <div  className=" flex flex-row text-xl capitalize justify-start items-center">
                         <label className="w-1/2 bg-transparent" htmlhtmlFor="scontact">Contact Number</label>
-                         <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierContact" onChange = {() => {setSCONTACT(event.target.value);}} type="number" className="form-control" placeholder="Enter Contact"></input>
+                         <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierContact" onChange = {() => {setSCONTACT(event.target.value);}} type="number"  placeholder="Enter Contact"></input>
                         </div>
                         <button type="submit" onClick={submitForm} className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider" style={{position:'relative', right: '80px'}}>Submit</button>
                         </form>
