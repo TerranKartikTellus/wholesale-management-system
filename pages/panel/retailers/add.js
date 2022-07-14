@@ -19,7 +19,7 @@ export default function Panel() {
                               <div className="flex flex-row items-center justify-between">
                               <Link href="/panel">
 
-                              <a href="/panel" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider">Back</a>
+                              <a  className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider">Back</a>
                               </Link>
                               
                               <div className="text-5xl  tracking-wide mt-5 mr-5  text-right">
