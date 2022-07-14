@@ -1,34 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Wholesale Management System
+### Wholesale management involves the running of a business that sells goods wholesale – that is, in bulk at a lower price than retail
+Next.js | MongoDB
 
-First, run the development server:
+##### It acts as middleman between the producers and consumers. Managing the details regarding the whole-sale system using pen and paper mode is an insurmountable task with a huge waste of time and resources. Hence the need for automation. A sophisticated and well-managed system will require the database system to conveniently store and retrieve data of the day-to-day operation with ease.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+###### Support features include Logging Data of Products | Product Categories | Supplier | Retailer | SALES.
+###### Admin can add users | Give special Privilege
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+📰 Bot-friendly content (SEO)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+🦾 Advanced SSR, SSG, and ISR techniques
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+🔥 MongoDB realtime CRUD and data modeling
 
-## Learn More
+⚛️ Reactive forms 
 
-To learn more about Next.js, take a look at the following resources:
+### Admin Login
+![alt](https://github.com/TerranKartikTellus/wholesale-management-system/blob/main/public/images/login.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Home Page
+#### Access to Products | Product Categories | Supplier | Retailer | SALES
+![alt](https://github.com/TerranKartikTellus/wholesale-management-system/blob/main/public/images/home.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Access data on MongoDB | Perform Create, Read, Update, Delete Operations
+![alt](https://github.com/TerranKartikTellus/wholesale-management-system/blob/main/public/images/product.png)
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+“For Educational Purposes Only”
