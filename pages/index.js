@@ -39,7 +39,7 @@ const [pass,setpass]=useState();
               <input onChange={()=>{setpass(event.target.value);}} type={'password'} placeholder="use special characters" className="bg-gray-900 outline-none m-3 p-3 w-full text-gray-100 "></input>
               <Link href={"/"}>
 
-              <a class="text-gray-300 ml-44 text-xs underline underline-offset-2" >forgot password ?</a>
+              <a className="text-gray-300 ml-44 text-xs underline underline-offset-2" >forgot password ?</a>
               </Link>
            </div>
 

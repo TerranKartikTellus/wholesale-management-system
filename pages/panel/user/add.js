@@ -126,12 +126,12 @@ function Form ({position1}){
 
 
                                 <div  className="text-xl">
-                                        <label for="admin">Admin Privilege:</label>
+                                        <label htmlFor="admin">Admin Privilege:</label>
 
                                         <button className="bg-gray-900 w-[100px] text-lg ml-[288px] my-2 text-gray-100 p-2 rounded" onClick={(e)=>{ e.preventDefault(); adminP=='Y' ?  setAdminP( 'N' ) : setAdminP( 'Y' )  } }>{adminP}</button>
                                 </div>
                                 <div   className="text-xl">
-                                        <label for="sex">Sex:</label>
+                                        <label htmlFor="sex">Sex:</label>
 
                                         <button className="bg-gray-900 text-lg w-[100px] ml-96 text-gray-100 p-2 rounded" onClick={(e)=>{ e.preventDefault(); sex=='M' ?  setSex( 'F' ) : setSex( 'M' )  } }>{sex}</button>
                                 </div>

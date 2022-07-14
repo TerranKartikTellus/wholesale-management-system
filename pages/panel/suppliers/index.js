@@ -259,7 +259,7 @@ function Form({upd}){
 
 
                         <div  className=" flex flex-row text-xl capitalize justify-start items-center">
-                        <label className="w-1/2 bg-transparent" htmlfor="sid">Supplier ID <span className="p-1 text-red-500 font-semibold">old value: {upd[1]}</span></label>
+                        <label className="w-1/2 bg-transparent" htmlFor="sid">Supplier ID <span className="p-1 text-red-500 font-semibold">old value: {upd[1]}</span></label>
                          <input defaultValue={upd[1]} required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"  name = "supplierID" 
                         onChange = {() => {
                                 setSID(event.target.value); 

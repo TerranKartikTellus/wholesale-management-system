@@ -97,7 +97,7 @@ function Form(){
 
 
                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
-                        <label className="w-1/2 bg-transparent" for="rid">Retailer Id</label>
+                        <label className="w-1/2 bg-transparent" htmlFor="rid">Retailer Id</label>
                         <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
                          name="retailerId" onChange={()=>{setRID(event.target.value);}}
                         type="number"  id="123"  placeholder="Enter Id"></input>
@@ -105,7 +105,7 @@ function Form(){
 
                         <br></br>
                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
-                        <label className="w-1/2 bg-transparent" for="rname">Product Name</label>
+                        <label className="w-1/2 bg-transparent" htmlFor="rname">Product Name</label>
                         <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
                          name="retailerName" onChange={()=>{setRNAME(event.target.value);}}
                         type="string"  id="name"  placeholder="Enter Name"></input>
@@ -113,7 +113,7 @@ function Form(){
                         <br></br>
 
                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
-                        <label className="w-1/2 bg-transparent" for="raddress">Retailer address</label>
+                        <label className="w-1/2 bg-transparent" htmlFor="raddress">Retailer address</label>
                         <input required className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" onChange={()=>{setRADDRESS(event.target.value);}}
                           name="retaileraddress"
                          type="string"  id="address" placeholder="Enter Address"></input>
@@ -121,7 +121,7 @@ function Form(){
                         <br></br>
 
                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
-                        <label className="w-1/2 bg-transparent" for="rcontact">Retailer Contact</label>
+                        <label className="w-1/2 bg-transparent" htmlFor="rcontact">Retailer Contact</label>
                         <input required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" onChange={()=>{setRCONTACT(event.target.value);}}
                          name="retailerContactnumber"
                          type="number"  id="123" placeholder="Enter Contact number"></input>

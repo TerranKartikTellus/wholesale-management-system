@@ -299,12 +299,12 @@ function Tank({upd}){
                                 type="text" name="position"></input>
                                 </div>
                                 <div className="text-xl">
-                                        <label for="admin">Admin Privilege: <span className="p-1 text-red-500 font-semibold">old value: {upd[5]}</span></label>
+                                        <label htmlFor="admin">Admin Privilege: <span className="p-1 text-red-500 font-semibold">old value: {upd[5]}</span></label>
 
                                         <button className="bg-gray-900 w-[100px] text-lg ml-[298px] my-2 text-gray-100 p-2 rounded" onClick={(e)=>{ e.preventDefault(); adminP=='Y' ?  setAdminP( 'N' ) : setAdminP( 'Y' )  } }>{adminP}</button>
                                 </div>
                                 <div className="text-xl">
-                                        <label for="sex">Sex: <span className="p-1 text-red-500 font-semibold">old value: {upd[6]}</span></label>
+                                        <label htmlFor="sex">Sex: <span className="p-1 text-red-500 font-semibold">old value: {upd[6]}</span></label>
 
                                         <button className="bg-gray-900 text-lg w-[100px] ml-96 text-gray-100 p-2 rounded" onClick={(e)=>{ e.preventDefault(); sex=='M' ?  setSex( 'F' ) : setSex( 'M' )  } }>{sex}</button>
                                 </div>
