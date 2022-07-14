@@ -4,6 +4,7 @@ import clientPromise from "/lib/mongodb";
 
 import React ,{useState} from "react"
 import { useRouter } from 'next/router';
+import Link from 'next/link'
 
 
 export default function Panel({AllRetailers}) {
@@ -22,8 +23,10 @@ export default function Panel({AllRetailers}) {
                     <div className="h-full bg-gray-200  w-3/12"><SidePanel></SidePanel></div>
                     <div className="h-full bg-gradient-to-br from-purple-600/20 via-cyan-600/20 to-fuchsia-500/30 w-9/12">
                              <div className="flex flex-row items-center justify-between">
-                              
+                              <Link href="/panel">
+
                               <a href="/panel" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider">Back</a>
+                              </Link>
                               
                               <div className="text-5xl  tracking-wide mt-5 mr-5  text-right">
                                         WholeSale Management <br></br> System
@@ -86,7 +89,7 @@ function Table({msg,retailers}){
           <div className="p-14 absolute top-32 left-auto right-auto z-50 w-9/12 bg-gray-100 bg-opacity-95 scale-90 hover:scale-95 shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out ">
             <div className="flex flex-row justify-between items-center text-5xl font-semibold">
               <div>UPDATE</div>
-              <div><button onClick={()=>setupd()} ><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg></button></div>  
+              <div><button onClick={()=>setupd()} ><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg></button></div>  
             </div>  
 
             <div className="py-20">
@@ -250,7 +253,7 @@ function Form({upd}){
 
 
                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
-                        <label className="w-1/2 bg-transparent" for="rid">Retailer Id <span className="p-1 text-red-500 font-semibold">old value: {upd[1]}</span></label>
+                        <label className="w-1/2 bg-transparent" htmlFor="rid">Retailer Id <span className="p-1 text-red-500 font-semibold">old value: {upd[1]}</span></label>
                         <input required defaultValue={upd[1]}  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
                          name="retailerId" onChange={()=>{setRID(event.target.value);}}
                         type="number"  id="123"  placeholder="Enter Id"></input>
@@ -258,7 +261,7 @@ function Form({upd}){
 
                         <br></br>
                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
-                        <label className="w-1/2 bg-transparent" for="rname">Product Name <span className="p-1 text-red-500 font-semibold">old value: {upd[2]}</span></label>
+                        <label className="w-1/2 bg-transparent" htmlFor="rname">Product Name <span className="p-1 text-red-500 font-semibold">old value: {upd[2]}</span></label>
                         <input defaultValue={upd[2]} required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900"
                          name="retailerName" onChange={()=>{setRNAME(event.target.value);}}
                         type="string"  id="name"  placeholder="Enter Name"></input>
@@ -266,7 +269,7 @@ function Form({upd}){
                         <br></br>
 
                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
-                        <label className="w-1/2 bg-transparent" for="raddress">Retailer address <span className="p-1 text-red-500 font-semibold">old value: {upd[3]}</span></label>
+                        <label className="w-1/2 bg-transparent" htmlFor="raddress">Retailer address <span className="p-1 text-red-500 font-semibold">old value: {upd[3]}</span></label>
                         <input defaultValue={upd[3]} required className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" onChange={()=>{setRADDRESS(event.target.value);}}
                           name="retaileraddress"
                          type="string"  id="address" placeholder="Enter Address"></input>
@@ -274,7 +277,7 @@ function Form({upd}){
                         <br></br>
 
                         <div className=" flex flex-row text-xl capitalize justify-start items-center">
-                        <label className="w-1/2 bg-transparent" for="rcontact">Retailer Contact <span className="p-1 text-red-500 font-semibold">old value: {upd[4]}</span></label>
+                        <label className="w-1/2 bg-transparent" htmlFor="rcontact">Retailer Contact <span className="p-1 text-red-500 font-semibold">old value: {upd[4]}</span></label>
                         <input defaultValue={upd[4]} required  className="w-1/2 bg-transparent border-b-2 px-2 py-1 border-gray-900" onChange={()=>{setRCONTACT(event.target.value);}}
                          name="retailerContactnumber"
                          type="number"  id="123" placeholder="Enter Contact number"></input>

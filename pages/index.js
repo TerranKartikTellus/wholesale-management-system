@@ -1,5 +1,5 @@
 import Head from 'next/head'
-
+import Link from "next/link"
 import {useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -37,17 +37,22 @@ const [pass,setpass]=useState();
            <div>
              Password<br></br>
               <input onChange={()=>{setpass(event.target.value);}} type={'password'} placeholder="use special characters" className="bg-gray-900 outline-none m-3 p-3 w-full text-gray-100 "></input>
-              <a class="text-gray-300 ml-44 text-xs underline underline-offset-2" href="/">forgot password ?</a>
+              <Link href={"/"}>
+
+              <a class="text-gray-300 ml-44 text-xs underline underline-offset-2" >forgot password ?</a>
+              </Link>
            </div>
 
            {/* <a href="/panel" type="submit" className="w-14 mt-10 mx-auto h-14 flex flex-col items-center justify-center bg-slate-300  text-black rounded-full shadow-md hover:shadow-gray-100/50">
              <img src="/arrow.svg" className="h-8 w-8"></img>
            </a>
             */}
+            <Link href={'/panel'}>
 
-            <a href='/panel'  type="submit" className="w-14 mt-10 mx-auto h-14 flex flex-col items-center justify-center bg-slate-300  text-black rounded-full shadow-md hover:shadow-gray-100/50">
+            <a  type="submit" className="w-14 mt-10 mx-auto h-14 flex flex-col items-center justify-center bg-slate-300  text-black rounded-full shadow-md hover:shadow-gray-100/50">
              <img src="/arrow.svg" className="h-8 w-8"></img>
            </a>
+            </Link>
            
          </form>
 

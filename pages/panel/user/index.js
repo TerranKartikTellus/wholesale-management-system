@@ -4,6 +4,7 @@ import clientPromise from "/lib/mongodb";
 
 import React ,{useState} from "react"
 import { useRouter } from 'next/router';
+import Link from 'next/link'
 
 
 export default function Panel({AllUsers}) {
@@ -23,8 +24,10 @@ return (
                     <div className="h-full bg-gray-200  w-3/12"><SidePanel></SidePanel></div>
                     <div className="overflow-y-auto h-full bg-gradient-to-br from-purple-600/20 via-cyan-600/20 to-fuchsia-500/30 w-9/12">
                               <div className="flex flex-row items-center justify-between">
-                              
-                              <a href="/panel" className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider">Back</a>
+                              <Link href="/panel">
+
+                              <a  className="bg-gray-800 text-gray-100 ml-20 p-3 rounded-md hover:bg-gray-100 hover:text-gray-900 font-semibold px-5 translate-y-16 hover:bg-opacity-30 tracking-wider">Back</a>
+                              </Link>
                               
                               <div className="text-5xl  tracking-wide mt-5 mr-5  text-right">
                                         WholeSale Management <br></br> System
@@ -88,7 +91,7 @@ return (
           <div className="p-14 absolute top-32 left-auto right-auto z-50 w-9/12 bg-gray-100 bg-opacity-95 scale-90 hover:scale-95 shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out ">
             <div className="flex flex-row justify-between items-center text-5xl font-semibold">
               <div>UPDATE</div>
-              <div><button onClick={()=>setupd()} ><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg></button></div>  
+              <div><button onClick={()=>setupd()} ><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg></button></div>  
             </div>  
 
             <div className="py-20">

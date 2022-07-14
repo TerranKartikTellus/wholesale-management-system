@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function SidePanel(){
           const name = "Blake Lake";
           const position = "Manager";
@@ -11,14 +13,16 @@ export default function SidePanel(){
                               
                               
                               <div className="mt-10 ">
-                                        <a href="/panel/user/add" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Add new Users</a><br/>
-                              <a href="/panel/user" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Manage Users</a><br/>
-                              <a href="/panel/userPosition/add" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Add User Position </a><br/>
+                                <a href="/panel/user/add" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Add new Users</a><br/>
+                                <a href="/panel/user"  className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Manage Users</a><br/>
+                                <a href="/panel/userPosition/add" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Add User Position </a><br/>
                               
                               <a href="/panel/userPosition" className="text-sm hover:text-lg transition-all duration-300 ease-in-out text-black tracking-wider hover:font-semibold">Manage User Position </a><br/>
-                              
-                              <div className="mt-10"><a href="/" className=" bg-gray-900 text-gray-100 hover:text-gray-900 hover:bg-gray-100 shadow-md hover:shadow-xl transition-all duration-300  ease-in-out p-3 text-center rounded-sm translate-y-4">Sign Out</a> </div>
                               </div>
+                              <div className="mt-10">
+                                <Link href="/"><a  className=" bg-gray-900 text-gray-100 hover:text-gray-900 hover:bg-gray-100 shadow-md hover:shadow-xl transition-all duration-300  ease-in-out p-3 text-center rounded-sm translate-y-4">Sign Out</a></Link>
+                              </div>
+                              
 
                               <div className="flex flex-row space-x-6 mt-20 justify-center items-center">
                                         <div className="hover:scale-100 scale-95 transition-all duration-300 ease-in-out hover:translate-y-1"><Insta></Insta></div>
